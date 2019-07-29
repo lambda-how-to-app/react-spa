@@ -1,20 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Route } from "react-router-dom";
+import { Container } from "semantic-ui-react";
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import UsersList from "./components/UsersList";
-import Welcome from './components/Welcome';
+import Welcome from "./components/Welcome";
+import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
     <div>
-      <h1>App component</h1>
-      <Login />
-      <Signup />
-      <UsersList />
-      <Welcome/>
-      
+      <Container>
+        <NavBar />
+        <Route exact path="/" component={Welcome} />
+        <Route path="/login" component={Login} />
+        <Route path="/sign-up" component={Signup} />
+        {/* <Login /> */}
+        {/* <Signup />
+        <UsersList /> */}
+        {/* <Welcome/> */}
+      </Container>
     </div>
   );
 };
