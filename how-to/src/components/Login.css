@@ -1,0 +1,58 @@
+.ui.header {
+    margin: 40px;
+}
+
+.ui.form {
+    max-width: 80%;
+}
+
+.ui.form .field {
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+
+@media only screen and (min-width: 700px) {
+    .ui.form {
+        max-width: 50%;
+    }    
+}
+
+@media only screen and (min-width: 990px) {
+    .ui.form {
+        max-width: 50%;
+    }
+}
+
+.formContainer {
+    background-color: darkgrey;
+    margin: 0 auto;
+    padding: 5%;
+}
+
+.emailLabel, .pwLabel {
+    float: left;
+}
+
+.forgotPw, .newAcct {
+    color: black;
+    text-decoration: underline;
+}
+
+a.forgotPw:hover, a.newAcct:hover {
+    color: grey;
+    text-decoration: underline;
+}
+
+.ui.form>p:last-child {
+    margin-bottom: 0;
+}
+
+.loginButton {
+    width: 80%;
+}
+
+.ui.button:hover {
+    color: white;
+    background-color: #018786;
+}
