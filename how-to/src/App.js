@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import UsersList from "./components/UsersList";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <h1>App component</h1>
       <Login />
       <Signup />
+      <UsersList />
     </div>
   );
 };

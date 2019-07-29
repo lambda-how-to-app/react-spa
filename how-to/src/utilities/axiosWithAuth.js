@@ -7,6 +7,6 @@ export const axiosWithAuth = () => {
     headers: {
       Authorization: token
     },
-    baseURL: "......api"
+    baseURL: "https://lambda-howto-app.herokuapp.com/api/"
   });
 };
