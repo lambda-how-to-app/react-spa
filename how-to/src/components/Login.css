@@ -35,7 +35,7 @@ a.forgotPw:hover, a.newAcct:hover {
 }
 
 .ui.form>p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 1px;
 }
 
 .loginButton {
