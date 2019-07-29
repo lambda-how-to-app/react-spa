@@ -1,6 +1,6 @@
 import { users, guides } from "../../dummy-data";
 
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from "../reducers";
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from "../actions";
 
 const initialState = {
   user: {},

@@ -5,6 +5,7 @@ export const axiosWithAuth = () => {
 
   return axios.create({
     headers: {
+      "Content-Type": "application/json",
       Authorization: token
     },
     baseURL: "https://lambda-howto-app.herokuapp.com/api/"
