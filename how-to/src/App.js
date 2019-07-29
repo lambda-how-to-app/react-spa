@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import UsersList from "./components/UsersList";
 import Welcome from './components/Welcome';
 
 const App = () => {
@@ -10,7 +11,8 @@ const App = () => {
     <div>
       <h1>App component</h1>
       <Login />
-      <Signup />  
+      <Signup />
+      <UsersList />
       <Welcome/>
       
     </div>
