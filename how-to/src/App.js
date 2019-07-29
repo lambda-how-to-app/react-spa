@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -16,4 +17,12 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  console.log(state);
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(App);
