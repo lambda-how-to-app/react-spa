@@ -1,10 +1,12 @@
-const initialState = {};
+const initialState = {
+  user: {},
+  error: "",
+  isLoading: false
+};
 
-const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
-
-export default reducer;
