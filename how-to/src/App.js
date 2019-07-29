@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import UsersList from "./components/UsersList";
+import Welcome from './components/Welcome';
 
 const App = () => {
   return (
@@ -12,6 +13,8 @@ const App = () => {
       <Login />
       <Signup />
       <UsersList />
+      <Welcome/>
+      
     </div>
   );
 };
