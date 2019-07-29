@@ -57,39 +57,3 @@ const Login = () => {
 }
 
 export default Login;
-
-// need onClick for Sign Up & Forgot Password
-
-
-            {/* 
-            <h1 class="ui header">WELCOME BACK</h1>
-            <form class="ui form">
-                <div class="field">
-                    <label htmlFor="email">Email Address</label>
-                    <input
-                        placeholder='Email Address'
-                        value={user.email}
-                        name="email"
-                        type="email"
-                        onChange={handleChange}
-                    />
-                </div>
-                <div class="field">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        placeholder='Password'
-                        value={user.password}
-                        name="password"
-                        type="password"
-                        onChange={handleChange}
-                    />
-                </div>
-                <p className="resetCred">
-                    <a href="#" className="forgotPw">Forgot Your Password?</a>
-                </p>
-                <button type="submit" className="button signInButton">Sign In</button>
-                <p className="resetCred">
-                    Don't have an account? <a href="#" className="newAcct">Sign Up</a> here!
-                </p>
-            </form>
-            */}
