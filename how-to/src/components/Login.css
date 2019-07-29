@@ -1,9 +1,12 @@
 .ui.header {
-    margin: 40px;
+    margin: 35px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-transform: uppercase;
 }
 
 .ui.form {
-    max-width: 80%;
+    width: 350px;
+    height: 295px;
 }
 
 .ui.form .field {
@@ -11,23 +14,10 @@
     margin-bottom: 15px;
 }
 
-
-@media only screen and (min-width: 700px) {
-    .ui.form {
-        max-width: 50%;
-    }    
-}
-
-@media only screen and (min-width: 990px) {
-    .ui.form {
-        max-width: 50%;
-    }
-}
-
 .formContainer {
     background-color: darkgrey;
     margin: 0 auto;
-    padding: 5%;
+    padding: 1.5rem;
 }
 
 .emailLabel, .pwLabel {
@@ -45,11 +35,11 @@ a.forgotPw:hover, a.newAcct:hover {
 }
 
 .ui.form>p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 1px;
 }
 
 .loginButton {
-    width: 80%;
+    width: 308px;
 }
 
 .ui.button:hover {

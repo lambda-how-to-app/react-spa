@@ -22,7 +22,7 @@ const Login = () => {
 
     return (
         <div className="ui center aligned container">
-            <Header as='h1'>WELCOME BACK</Header>
+            <Header as='h1'>Welcome Back</Header>
             <Form onSubmit={handleSubmit} className="formContainer">
                 <Form.Field className="emailContainer">
                     <label htmlFor="email" className="emailLabel">Email Address</label>
