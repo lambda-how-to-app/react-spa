@@ -1,8 +1,7 @@
 #signUpButton {
-    width:350px;
+    width:349px;
     background-color: #018786;
-    color:white;
-} 
+}  
 
 #CreatorButton , #GenralButton {
     width:350px;
@@ -25,6 +24,10 @@
 #GeneralAcc , #CreatorAcc {
     font-weight: bold;
     font-size:30px;
+}  
+
+.link {
+    color:white;
 }
 
 
