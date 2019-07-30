@@ -37,7 +37,8 @@ const Login = (props, { isSubmitting }) => {
             .post("/api/v1/auth/login", values)
             .then(res => {
               console.log(res);
-              actions.resetForm();
+              setValue(res.data.body.token);
+              actions.resetForm("");
             })
             .catch(err => {
               console.log(err);
