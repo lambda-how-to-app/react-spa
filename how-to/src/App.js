@@ -12,8 +12,6 @@ import UserDashboard from "./components/UserDashboard";
 import CreatorDashboard from "./components/CreatorDashboard";
 import PrivateRoute from "./components/PrivateRoute";
 
-import CreatorDashboard from "./components/CreatorDashboard"
-
 const App = () => {
   return (
     <div>
