@@ -1,12 +1,8 @@
 import React from 'react';
 import '../../src/index.css'
 import { Link } from 'react-router-dom';
-
-<<<<<<< HEAD
-=======
 import Guide from './Guide.js';
 
->>>>>>> a17d9ad104db510d5055e8d8e0926aaa5ef2b3d4
 function Welcome() { 
 
     return (
