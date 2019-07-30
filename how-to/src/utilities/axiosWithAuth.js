@@ -8,6 +8,6 @@ export const axiosWithAuth = () => {
       "Content-Type": "application/json",
       Authorization: token
     },
-    baseURL: "https://lambda-howto-app.herokuapp.com/api/"
+    baseURL: "https://lambda-howto-app.herokuapp.com/"
   });
 };
