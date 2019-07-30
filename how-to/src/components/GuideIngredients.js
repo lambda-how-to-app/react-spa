@@ -6,11 +6,12 @@ const GuideIngredients = () => {
     <div>
       <Header as="h3" textAlign='center'>What's Needed</Header>
       <List bulleted>
+      {/* to be replaced with back end data */}
         <List.Item>milk</List.Item>
         <List.Item>chocolate syrup</List.Item>
-         <List.Item>spoon</List.Item>
-         <List.Item>cup</List.Item>
-        </List>
+        <List.Item>spoon</List.Item>
+        <List.Item>cup</List.Item>
+      </List>
     </div> 
   );
 };

@@ -5,7 +5,7 @@ const GuideImage = () => {
     return (
         <div>
             <Card>
-                <Image src='src/chocomilk.jpg' alt="Photo of Guide" wrapped-ui={false} />
+                <Image src="#" alt="photo of your uploaded guide" wrapped-ui={false} />
             </Card>
         </div>
     );
