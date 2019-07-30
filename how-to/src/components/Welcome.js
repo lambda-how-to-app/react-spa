@@ -1,13 +1,15 @@
 import React from 'react';
 import '../../src/index.css'
+import { Link } from 'react-router-dom';
+
 import Guide from './Guide.js';
 
-function Welcome() {
+function Welcome() { 
+
     return (
         <div>
             <Guide />
-
-            {/* <h1 class="ui header">WELCOME TO HOW-TO</h1>
+            <h1 class="ui header">WELCOME TO  HOW-TO</h1>
             <div className="field">
                 <button class="ui button" id="CreatorButton">
                     <div class="ui right floated compact segment small">
@@ -46,8 +48,8 @@ function Welcome() {
                 </button>
             </div><br />
             <div className="field">
-                <button class="ui button" id="signUpButton"> Sign Up </button>
-            </div> */}
+                <button class="ui button" id="signUpButton"> <Link className = "link" to="/sign-up">Sign Up</Link></button>
+            </div>
         </div>
     );
 }
