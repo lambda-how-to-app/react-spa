@@ -1,24 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import { Input, Icon } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
 const AddGuide = () => {
-const [inputValue, setInputValue] = useState('');
-
-const handleChange = (event) => {setInputValue(event.target.value)};
-    
+    const [inputValue, setInputValue] = useState('');
+    const ingredientForm = document.getElementsByClassName('ingredientForm')
+    const handleChange = (event) => { setInputValue({...inputValue}, event.target.value) };
+    const elementKiller = (event) => {ingredientForm.removeChild(document.getElementById(event.target.value))};
+    const handleIngredientSubmit = (event) => {
+        event.preventDefault();
+    }
+    const newIngredient = (event) => {
+        return (
+            <div id={event.target.value}><p>{event.target.value}</p> <button onClick={elementKiller}><Icon name="trash alternate outline"/></button> </div>
+        )
+    };
     const enterHandler = (event) => {
-
-        let newIngredient = (event) => {
-            return (
-                    <div><p>{event.target.value}</p> </div>
-            )
-        };
 
         if (event.key === 'Enter') {
             //target element and add a new deletable "input" field above the input.
-            document.querySelector('ingredientForm').appendChild(newIngredient);
+            ingredientForm.appendChild(newIngredient);
         } else {
             return;
         }
@@ -26,7 +28,6 @@ const handleChange = (event) => {setInputValue(event.target.value)};
 
     return (
         <>
-
             <fieldset>
                 <form>
                     <label>
@@ -43,14 +44,15 @@ const handleChange = (event) => {setInputValue(event.target.value)};
 
             <h2>WHAT'S NEEDED</h2>
             <div className='ingredientForm'>
-            <fieldset>
-                <form>
-                    <label>
-                        <Input placeholder='add an ingredient...' onKeyPress={enterHandler} onChange={handleChange}/>
-                    </label>
-                </form>
-            </fieldset>
+                <fieldset>
+                    <form onSubmit={event => {handleIngredientSubmit(event)}}>
+                        <label>
+                            <Input placeholder='add an ingredient...' onKeyPress={enterHandler} onChange={handleChange} />
+                        </label>
+                    </form>
+                </fieldset>
             </div>
+
         </>
     )
 }
