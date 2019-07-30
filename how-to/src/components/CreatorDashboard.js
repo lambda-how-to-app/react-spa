@@ -38,7 +38,7 @@ const LineDiv = styled.div `
   width: 362px;
   margin-left: 6px;
   height: 8px;
-  top: 9px;
+  margin-top: 9px;
   background: #5C5C5C;
 `
 

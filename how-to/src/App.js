@@ -10,7 +10,7 @@ import Welcome from "./components/Welcome";
 import NavBar from "./components/NavBar";
 
 import CreatorDashboard from "./components/CreatorDashboard"
-
+import AddGuide from "./components/AddGuide"
 const App = () => {
   return (
     <div>
@@ -20,6 +20,7 @@ const App = () => {
         <Route path="/login" component={Login} />
         <Route path="/sign-up" component={Signup} />
         <Route path="/creator-dashboard" component={CreatorDashboard} />
+        <Route path="/add-guide" component={AddGuide} />
         {/* <Login /> */}
         {/* <Signup />
         <UsersList /> */}
