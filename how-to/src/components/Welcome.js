@@ -1,8 +1,11 @@
 import React from 'react';
-import '../../src/index.css'
+import '../../src/index.css' 
+import { Link } from 'react-router-dom';
 
 
-function Welcome() {
+
+function Welcome() { 
+
     return (
         <div>
             <h1 class="ui header">WELCOME TO  HOW-TO</h1>
@@ -44,7 +47,7 @@ function Welcome() {
                 </button>
             </div><br />
             <div className="field">
-                <button class="ui button" id="signUpButton"> Sign Up </button>
+                <button class="ui button" id="signUpButton"> <Link to="/sign-up">Sign Up</Link></button>
             </div>
         </div>
     );
