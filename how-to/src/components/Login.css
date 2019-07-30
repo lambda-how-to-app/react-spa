@@ -1,48 +1,51 @@
 .ui.header {
-    margin: 35px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    text-transform: uppercase;
+  margin: 35px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-transform: uppercase;
 }
 
 .ui.form {
-    width: 350px;
-    height: 295px;
+  width: 350px;
+  height: 295px;
 }
 
 .ui.form .field {
-    margin: 0 auto;
-    margin-bottom: 15px;
+  margin: 0 auto;
+  margin-bottom: 15px;
 }
 
 .formContainer {
-    background-color: darkgrey;
-    margin: 0 auto;
-    padding: 1.5rem;
+  background-color: darkgrey;
+  margin: 0 auto;
+  padding: 1.5rem;
 }
 
-.emailLabel, .pwLabel {
-    float: left;
+.passwordContainer label,
+.emailContainer label {
+  float: left;
 }
 
-.forgotPw, .newAcct {
-    color: black;
-    text-decoration: underline;
+.forgotPw,
+.newAcct {
+  color: black;
+  text-decoration: underline;
 }
 
-a.forgotPw:hover, a.newAcct:hover {
-    color: grey;
-    text-decoration: underline;
+a.forgotPw:hover,
+a.newAcct:hover {
+  color: grey;
+  text-decoration: underline;
 }
 
-.ui.form>p:last-child {
-    margin-bottom: 1px;
+.ui.form > p:last-child {
+  margin-bottom: 1px;
 }
 
 .loginButton {
-    width: 308px;
+  width: 308px;
 }
 
 .ui.button:hover {
-    color: white;
-    background-color: #018786;
+  color: white;
+  background-color: #018786;
 }

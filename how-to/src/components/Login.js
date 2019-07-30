@@ -1,59 +1,107 @@
-import React, { useState } from 'react';
-import { Button, Form, Header } from 'semantic-ui-react';
-import './Login.css';
+import React, { useState } from "react";
+import { Button, Form, Header, Input } from "semantic-ui-react";
+import { Formik } from "formik";
+import * as Yup from "yup";
 
-const Login = () => {
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { axiosWithAuth } from "../utilities/axiosWithAuth";
 
-    // const { submitLogin } = props;
-    const [user, setUser] = useState({ email: "", password: "" });
+import "./Login.css";
 
-    function handleChange(event) {
-        const loginUser = { ...user, [event.target.name]: event.target.value };
-        setUser(loginUser);
-        console.log("handleChange", loginUser);
-    }
+const Login = (props, { isSubmitting }) => {
+  const LoginSchema = Yup.object().shape({
+    email: Yup.string()
+      .email()
+      .required("Your email is required"),
+    password: Yup.string()
+      .min(8, "Your password must be at least 8 characters long")
+      .required("Your password is required")
+  });
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        // submitLogin(user);
-        console.log("submitted: ", user);
-        setUser({ email: "", password: "" });
-    };
+  const [storedValue, setValue] = useLocalStorage("token");
 
-    return (
-        <div className="ui center aligned container">
-            <Header as='h1'>Welcome Back</Header>
-            <Form onSubmit={handleSubmit} className="formContainer">
-                <Form.Field className="emailContainer">
-                    <label htmlFor="email" className="emailLabel">Email Address</label>
-                    <input 
-                        placeholder='Email Address' 
-                        value={user.email}
-                        name="email"
-                        type="email"
-                        onChange={handleChange}
-                    />
-                </Form.Field>
-                <Form.Field>
-                    <label htmlFor="password" className="pwLabel">Password</label>
-                    <input 
-                        placeholder='Password' 
-                        value={user.password}
-                        name="password"
-                        type="password"
-                        onChange={handleChange}
-                    />
-                </Form.Field>
-                <p className="resetCred">
-                    <a href="#" className="forgotPw">Forgot Your Password?</a>
-                </p>
-                <Button type='submit' className="loginButton">Sign In</Button>
-                <p className="resetCred">
-                    Don't have an account? <a href="#" className="newAcct">Sign Up</a> here!
-                </p>
+  return (
+    <div className="ui center aligned container">
+      <Header as="h1">Welcome Back</Header>
+
+      <Formik
+        validationSchema={LoginSchema}
+        initialValues={{
+          email: "",
+          password: ""
+        }}
+        onSubmit={(values, actions) => {
+          console.log(actions);
+          console.log(values);
+          return axiosWithAuth()
+            .post("/api/v1/auth/login", values)
+            .then(res => {
+              console.log(res);
+              actions.resetForm();
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }}
+        render={({
+          touched,
+          errors,
+          handleSubmit,
+          handleChange,
+          handleBlur
+        }) => {
+          return (
+            <Form className="formContainer" onSubmit={handleSubmit}>
+              <Form.Field
+                label="Email Address"
+                className="emailContainer"
+                control={Input}
+                autoComplete="off"
+                placeholder="Email Address"
+                name="email"
+                type="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.email && touched.email ? (
+                <p style={{ margin: "0", color: "red" }}>{errors.email}</p>
+              ) : null}
+              <Form.Field
+                label="Password"
+                className="passwordContainer"
+                control={Input}
+                autoComplete="off"
+                placeholder="Password"
+                name="password"
+                type="password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.password && touched.password ? (
+                <p style={{ margin: "0", color: "red" }}>{errors.password}</p>
+              ) : null}
+              <p className="resetCred">
+                <a href="#" className="forgotPw">
+                  Forgot Your Password?
+                </a>
+              </p>
+              <Button className="loginButton" type="submit" color="blue">
+                Sign In &rarr;
+              </Button>
+              {isSubmitting && "Loading!"}
+              <p className="resetCred">
+                Don't have an account?{" "}
+                <a href="#" className="newAcct">
+                  Sign Up
+                </a>{" "}
+                here!
+              </p>
             </Form>
-        </div>
-    )
-}
+          );
+        }}
+      />
+    </div>
+  );
+};
 
 export default Login;
