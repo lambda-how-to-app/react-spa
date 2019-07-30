@@ -1,11 +1,17 @@
 import React from 'react';
-import '../../src/index.css' 
+import '../../src/index.css'
 import { Link } from 'react-router-dom';
 
+<<<<<<< HEAD
+=======
+import Guide from './Guide.js';
+
+>>>>>>> a17d9ad104db510d5055e8d8e0926aaa5ef2b3d4
 function Welcome() { 
 
     return (
         <div>
+            <Guide />
             <h1 class="ui header">WELCOME TO  HOW-TO</h1>
             <div className="field">
                 <button class="ui button" id="CreatorButton">
