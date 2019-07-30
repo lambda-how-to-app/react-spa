@@ -1,11 +1,18 @@
 import React from "react";
 // import {  } from "semantic-ui-react";
+import styled from 'styled-components'
 
-const GuideKeywords = () => {
+const KeyDiv = styled.div `
+  margin-top: 10px;
+  margin-bottom: 30px;
+`
+
+const GuideKeywords = (props) => {
   return ( 
-    <div>
-      <p>keywords: chocolate, beverage, dessert</p>
-    </div> 
+    <KeyDiv>
+      {/* to be replaced with back end data */}
+      <p>keywords: {props.keywords}</p>
+    </KeyDiv> 
   );
 };
 
