@@ -12,6 +12,8 @@ import UserDashboard from "./components/UserDashboard";
 import CreatorDashboard from "./components/CreatorDashboard";
 import PrivateRoute from "./components/PrivateRoute";
 
+import CreatorDashboard from "./components/CreatorDashboard"
+
 const App = () => {
   return (
     <div>
@@ -22,6 +24,7 @@ const App = () => {
         <Route path="/sign-up" render={props => <Signup {...props} />} />
         <PrivateRoute path="/user-dashboard" component={UserDashboard} />
         <PrivateRoute path="/creator-dashboard" component={CreatorDashboard} />
+
         {/* <Login /> */}
         {/* <Signup />
         <UsersList /> */}
