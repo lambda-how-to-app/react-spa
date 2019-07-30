@@ -4,7 +4,7 @@ import { Header } from "semantic-ui-react";
 const GuideTitle = () => {
   return ( 
     <div>
-      <Header as="h3" textAlign='center'>Guide Name Here</Header>
+      <Header as="h3" textAlign='center'>Make Chocolate Milk</Header>
     </div> 
   );
 };
