@@ -29,5 +29,22 @@
 .link {
     color:white;
 }
+   
 
+#Cantainer{
+
+    margin-bottom: 3%;
+    margin-top:3%;
+}
+#topcontainer {
+   width:290px;
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content:space-between;
+   
+} 
+#populercardOne , #populercardTwo {
+    width:130px;
+    height:120px;
+}
 
