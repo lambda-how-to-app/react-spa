@@ -1,42 +1,71 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { Input, Icon } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
+    //instead of this insane thing i'm trying to do, i should create an array of objects for each of the threeish forms.
+    //the form-objects should have an ID key, and a content key.  the content key's value will be the user input
+    //we'll map over each array and create a series of elements based on user input with a unique key/ID 
+    // this means we'll need three other 'helper' components to make this form work.
+
+    ;
 const AddGuide = () => {
     const [inputValue, setInputValue] = useState('');
+
     const ingredientForm = document.getElementsByClassName('ingredientForm')
-    const handleChange = (event) => { setInputValue({...inputValue}, event.target.value) };
-    const elementKiller = (event) => {ingredientForm.removeChild(document.getElementById(event.target.value))};
+    const handleChange = (event) => { setInputValue({ ...inputValue }, event.target.value) };
+
     const handleIngredientSubmit = (event) => {
         event.preventDefault();
     }
-    const newIngredient = (event) => {
+
+    const [steps, setSteps] = useState([])
+    const elementKiller = (event, arr) => { arr.splice(arr.indexOf(event.target.value)) };
+
+    
+
+    const NewIngredient = (props) => {
         return (
-            <div id={event.target.value}><p>{event.target.value}</p> <button onClick={elementKiller}><Icon name="trash alternate outline"/></button> </div>
+
+            <div>
+                <p>{props.step}</p> <button onClick={elementKiller}><Icon name="trash alternate outline" /></button></div>
+
+
         )
     };
+
     const enterHandler = (event) => {
 
         if (event.key === 'Enter') {
             //target element and add a new deletable "input" field above the input.
-            ingredientForm.appendChild(newIngredient);
+            steps && steps.map(step => {
+                return (
+                <>
+                    <h3>STEP #{steps.indexOf(step) + 1}</h3>
+                    <NewIngredient key={"step_key=" + (steps.indexOf(step)) + 1} step={step} />
+                </>)
+                })
         } else {
             return;
         }
     }
 
+
+//keep this?
+    const handleStepSubmit = (event) => {
+        event.preventDefault();
+        setSteps([...steps], event.target.value);
+    }
+
     return (
         <>
-            <fieldset>
-                <form>
-                    <label>
-                        <h1>HOW-TO</h1>
-                        <input type="text" />
-                    </label>
+            <form>
+                <label>
+                    <h1>HOW-TO</h1>
+                    <input type="text" />
+                </label>
+            </form>
 
-                </form>
-            </fieldset>
 
             {/*photo adder here*/}
             <label> Keywords: <input type="text" /> </label>
@@ -44,13 +73,21 @@ const AddGuide = () => {
 
             <h2>WHAT'S NEEDED</h2>
             <div className='ingredientForm'>
-                <fieldset>
-                    <form onSubmit={event => {handleIngredientSubmit(event)}}>
-                        <label>
-                            <Input placeholder='add an ingredient...' onKeyPress={enterHandler} onChange={handleChange} />
-                        </label>
-                    </form>
-                </fieldset>
+                <form onSubmit={event => { handleIngredientSubmit(event) }}>
+                    <label>
+                        <Input placeholder='add an ingredient...' onKeyPress={enterHandler} onChange={handleChange} />
+                    </label>
+                </form>
+            </div>
+
+ 
+
+            <div>
+                {}
+
+                <form onSubmit={event => { handleStepSubmit(event) }}>
+                    <Input placeholder='enter steps...' />
+                </form>
             </div>
 
         </>
