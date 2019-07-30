@@ -24,6 +24,10 @@
 #GeneralAcc , #CreatorAcc {
     font-weight: bold;
     font-size:30px;
+}  
+
+.link {
+    color:white;
 }
 
 

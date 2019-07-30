@@ -47,7 +47,7 @@ function Welcome() {
                 </button>
             </div><br />
             <div className="field">
-                <button class="ui button" id="signUpButton"> <Link to="/sign-up">Sign Up</Link></button>
+                <button class="ui button" id="signUpButton"> <Link className = "link" to="/sign-up">Sign Up</Link></button>
             </div>
         </div>
     );
