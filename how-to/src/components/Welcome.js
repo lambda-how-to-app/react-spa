@@ -5,7 +5,7 @@ import '../../src/index.css'
 function Welcome() {
     return (
         <div>
-            <h1 class="ui header">WELCOME TO HOW-TO</h1>
+            <h1 class="ui header">WELCOME TO  HOW-TO</h1>
             <div className="field">
                 <button class="ui button" id="CreatorButton">
                     <div class="ui right floated compact segment small">
