@@ -4,14 +4,17 @@ import styled from 'styled-components'
 
 const BodyWrap = styled.div `
   background-color: #E5E5E5;
+  width: 374px;
   height: auto;
+
 `
 
-const Span = styled.span`
+const Span = styled.div`
   width: 344px;
   height: 219px;
   background: #B89498;
-  top: 61px;
+  margin-top: 61px;
+  margin-left: 12px;
   `
 
 const ProfileImage = styled.img `
@@ -33,6 +36,7 @@ const H3 = styled.h3 `
   `
 const LineDiv = styled.div `
   width: 362px;
+  margin-left: 6px;
   height: 8px;
   top: 9px;
   background: #5C5C5C;
@@ -41,16 +45,23 @@ const LineDiv = styled.div `
 const CardContainer = styled.div `
   width:372px;
   margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 `
 
 const Card = styled.div `
   width: 132px;
   height: 132px;
+  margin-top: 15px;
   background: #678650;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 `
 
 const CardP = styled.p `
-  width: 83px;
+  width: 100%;
   height: 50px;
   font-family: Nunito;
   font-style: normal;
@@ -58,7 +69,7 @@ const CardP = styled.p `
   font-size: 18px;
   line-height: 25px;
   text-align: center;
-  letter-spacing: 21px;
+  letter-spacing: 7px;
   color: #FFFFFF;
 `
 const CreatorDashboard = () => {
@@ -66,10 +77,10 @@ const CreatorDashboard = () => {
 
   return (
     <BodyWrap>
-      <Span>{/*user card */}
-        <ProfileImage src={/*pulled in from the back end*/} alt="your uploaded user-photo" />
+      <Span>              {/*user card */}
+        <ProfileImage src='{/*pulled in from the back end*/}' alt="your uploaded user-photo" />
         <H3>Creator_name{/*actual name will be pulled in from backend*/}</H3>
-        <Link to="/settings"><img src="../../public/images/edit-icon.png" alt="edit icon"/></Link>
+        <Link to="/settings"><img src="" alt="edit icon"/></Link>
       </Span>
 
       <LineDiv>{/*grey line under the user card */}</LineDiv>
@@ -84,7 +95,7 @@ const CreatorDashboard = () => {
 
         <Link to="/Myguides">
           <Card>{/*box link thing*/}
-            <CardP>My Guides</pCardP>
+            <CardP>My Guides</CardP>
           </Card>
         </Link>
 
@@ -114,8 +125,6 @@ const CreatorDashboard = () => {
       </CardContainer>
     </BodyWrap>
   )
-
-
 };
 
 export default CreatorDashboard;
