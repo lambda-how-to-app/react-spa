@@ -1,11 +1,13 @@
 import React from 'react';
 import '../../src/index.css'
-
+import Guide from './Guide.js';
 
 function Welcome() {
     return (
         <div>
-            <h1 class="ui header">WELCOME TO HOW-TO</h1>
+            <Guide />
+
+            {/* <h1 class="ui header">WELCOME TO HOW-TO</h1>
             <div className="field">
                 <button class="ui button" id="CreatorButton">
                     <div class="ui right floated compact segment small">
@@ -45,7 +47,7 @@ function Welcome() {
             </div><br />
             <div className="field">
                 <button class="ui button" id="signUpButton"> Sign Up </button>
-            </div>
+            </div> */}
         </div>
     );
 }
