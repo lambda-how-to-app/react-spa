@@ -7,16 +7,14 @@ const Instructions = styled.div `
   margin-bottom: 30px;
 `
 
-const GuideStepCard = () => {
+const GuideStepCard = (props) => {
   return ( 
     <Instructions>
         <Header as="h3" textAlign='center'>Step #1</Header>
         <Card.Group>
             <Card>
                 <Card.Content>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam 
-                    accumsan accumsan varius. Praesent pulvinar neque id turpis dapibus 
-                    maximus.
+                    {props.steps}
                 </Card.Content>
             </Card>
         </Card.Group>

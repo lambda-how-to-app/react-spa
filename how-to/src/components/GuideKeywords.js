@@ -7,11 +7,11 @@ const KeyDiv = styled.div `
   margin-bottom: 30px;
 `
 
-const GuideKeywords = () => {
+const GuideKeywords = (props) => {
   return ( 
     <KeyDiv>
       {/* to be replaced with back end data */}
-      <p>keywords: chocolate, beverage, dessert</p>
+      <p>keywords: {props.keywords}</p>
     </KeyDiv> 
   );
 };

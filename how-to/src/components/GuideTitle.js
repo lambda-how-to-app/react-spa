@@ -6,11 +6,11 @@ const Head = styled.div `
   margin-bottom: 30px;
 `
 
-const GuideTitle = () => {
+const GuideTitle = (props) => {
   return ( 
     <Head>
       {/* to be replaced with back end data */}
-      <Header as="h3" textAlign='center'>Make Chocolate Milk</Header>
+      <Header as="h3" textAlign='center'>{props.title}</Header>
     </Head> 
   );
 };
