@@ -8,18 +8,21 @@ import Signup from "./components/Signup";
 import UsersList from "./components/UsersList";
 import Welcome from "./components/Welcome";
 import NavBar from "./components/NavBar";
-
-import CreatorDashboard from "./components/CreatorDashboard"
+import UserDashboard from "./components/UserDashboard";
+import CreatorDashboard from "./components/CreatorDashboard";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
   return (
     <div>
       <Container>
         <NavBar />
-        <Route exact path="/" component={Welcome} />
-        <Route path="/login" component={Login} />
-        <Route path="/sign-up" component={Signup} />
-        <Route path="/creator-dashboard" component={CreatorDashboard} />
+        <Route exact path="/" render={props => <Welcome {...props} />} />
+        <Route path="/login" render={props => <Login {...props} />} />
+        <Route path="/sign-up" render={props => <Signup {...props} />} />
+        <PrivateRoute path="/user-dashboard" component={UserDashboard} />
+        <PrivateRoute path="/creator-dashboard" component={CreatorDashboard} />
+
         {/* <Login /> */}
         {/* <Signup />
         <UsersList /> */}
