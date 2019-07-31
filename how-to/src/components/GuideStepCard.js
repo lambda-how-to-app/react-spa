@@ -14,9 +14,7 @@ const GuideStepCard = props => {
         Step #1
       </Header>
       <Card.Group>
-        <Card>
-          <Card.Content>{props.steps}</Card.Content>
-        </Card>
+          <Card.Content className="cardStyle"></Card.Content>{props.steps}
       </Card.Group>
     </Instructions>
 

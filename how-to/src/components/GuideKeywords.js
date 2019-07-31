@@ -5,13 +5,14 @@ import styled from "styled-components";
 const KeyDiv = styled.div`
   margin-top: 10px;
   margin-bottom: 30px;
+  width: 344px;
 `;
 
 const GuideKeywords = props => {
   return (
     <KeyDiv>
       {/* to be replaced with back end data */}
-      <p>keywords: {props.keywords}</p>
+      <p className="keywords">keywords: {props.keywords}</p>
     </KeyDiv>
 
     // const GuideKeywords = ({ keywords }) => {

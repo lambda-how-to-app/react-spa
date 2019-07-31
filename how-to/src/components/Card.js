@@ -8,12 +8,14 @@ import GuideIngredients from "./GuideIngredients.js";
 import GuideStepCard from "./GuideStepCard.js";
 import GuideMod from './GuideMod.js';
 
+import "./Card.css";
+
 // { name: "", img: "", keyword: [], ingredients: [], steps: [] };
 
 const Card = (props) => {
     const { guide } = props; // destructuring 
     return(
-        <div>
+        <div className="cardContainer">
             <GuideTitle title={guide.name}/>
             <GuideImage src={guide.img} />
             <GuideKeywords keywords={guide.keyword.map(word => word + " ")} />
