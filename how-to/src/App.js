@@ -12,6 +12,7 @@ import UserDashboard from "./components/UserDashboard";
 import CreatorDashboard from "./components/CreatorDashboard";
 import GuideList from "./components/GuideList";
 import PrivateRoute from "./components/PrivateRoute";
+import AddGuide from "./components/AddGuide";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <PrivateRoute path="/user-dashboard" component={UserDashboard} />
         <PrivateRoute path="/creator-dashboard" component={CreatorDashboard} />
         <PrivateRoute path="/guides" component={GuideList} />
+        <Route path= '/add-guide' component={AddGuide} />
 
         {/* <Login /> */}
         {/* <Signup />
