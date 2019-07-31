@@ -11,7 +11,7 @@ function Welcome() {
       <div className="field">
         <button class="ui button" id="CreatorButton">
           <div class="ui right floated compact segment small">
-            <div class="ui fitted checkbox">
+            <div class="ui fitted checkbox radio">
               <input type="checkbox" />
               <label />
             </div>
@@ -56,8 +56,8 @@ function Welcome() {
             </div>
             <div class="header">
               {" "}
-              <i class="right triangle icon" />easily search/filter how-to
-              guides
+              <i class="right triangle icon" />
+              easily search/filter how-to guides
             </div>
             <div class="header">
               {" "}

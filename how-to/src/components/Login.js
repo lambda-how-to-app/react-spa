@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Button, Form, Header, Input } from "semantic-ui-react";
 import { Formik } from "formik";
@@ -6,13 +6,9 @@ import * as Yup from "yup";
 
 import { login } from "../store/actions";
 
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { axiosWithAuth } from "../utilities/axiosWithAuth";
-
 import "./Login.css";
 
 const Login = (props, { isSubmitting }) => {
-  console.log("Login props: ", props);
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
       .email()
@@ -21,8 +17,6 @@ const Login = (props, { isSubmitting }) => {
       .min(8, "Your password must be at least 8 characters long")
       .required("Your password is required")
   });
-
-  const [storedValue, setValue] = useLocalStorage("token");
 
   return (
     <div className="ui center aligned container">

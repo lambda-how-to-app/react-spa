@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Button, Form, Header, Input } from "semantic-ui-react";
+import { Button, Form, Header, Input, Radio } from "semantic-ui-react";
 
 import { signUp } from "../store/actions";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { axiosWithAuth } from "../utilities/axiosWithAuth";
 
 const Signup = (props, { isSubmitting }) => {
-  const [storedValue, setValue] = useLocalStorage("token");
-
   const SecretDiv = styled.div`
     width: 100%;
     height: 600px;
@@ -44,6 +41,7 @@ const Signup = (props, { isSubmitting }) => {
       <Formik
         validationSchema={LoginSchema}
         initialValues={{
+          guide: false,
           firstname: "",
           lastname: "",
           username: "",
@@ -53,6 +51,7 @@ const Signup = (props, { isSubmitting }) => {
         }}
         onSubmit={(values, actions) => {
           props.signUp(values).then(res => {
+            console.log(res);
             if (res) {
               props.history.push("/creator-dashboard");
             }
@@ -65,10 +64,32 @@ const Signup = (props, { isSubmitting }) => {
           handleSubmit,
           handleChange,
           handleBlur,
-          values
+          values,
+          setFieldValue
         }) => {
           return (
             <Form onSubmit={handleSubmit}>
+              <Form.Group>
+                <label>Choose Account Type</label>
+                <Form.Field
+                  label="Creator Account"
+                  name="guide"
+                  checked={values.guide === true}
+                  value="true"
+                  control={Radio}
+                  onChange={() => setFieldValue("guide", true)}
+                />
+
+                <Form.Field
+                  label="General User Account"
+                  name="guide"
+                  checked={values.guide === false}
+                  value="false"
+                  control={Radio}
+                  onChange={() => setFieldValue("guide", false)}
+                />
+              </Form.Group>
+
               <Form.Field
                 label="First Name"
                 value={values.firstname || ""}

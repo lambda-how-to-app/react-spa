@@ -12,12 +12,14 @@ import UserDashboard from "./components/UserDashboard";
 import CreatorDashboard from "./components/CreatorDashboard";
 import GuideList from "./components/GuideList";
 import PrivateRoute from "./components/PrivateRoute";
+import SignUpForm from "./components/forms/SignUpForm";
 
 const App = () => {
   return (
     <div>
       <Container>
         <NavBar />
+        {/* <SignUpForm /> */}
         <Route exact path="/" render={props => <Welcome {...props} />} />
         <Route path="/login" render={props => <Login {...props} />} />
         <Route path="/sign-up" render={props => <Signup {...props} />} />
