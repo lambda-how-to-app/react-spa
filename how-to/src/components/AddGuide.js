@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, Header, Modal, Form } from 'semantic-ui-react'
+import { Input, Header, Modal, Form, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import AddNewStep from './AddNewStep';
 import AddGuideImages from './AddGuideImages.js';
