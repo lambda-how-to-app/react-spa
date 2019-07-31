@@ -17,7 +17,6 @@ import {
 const initialState = {
   user: null,
   users: null,
-
   guides: null,
   error: "",
   isLoading: false,
@@ -83,8 +82,9 @@ export const reducer = (state = initialState, action) => {
       };
     case SIGN_UP_START:
       return {
+        ...state,
         user: null,
-        users: {},
+        users: null,
         guides: null,
         error: "",
         isLoading: true,
@@ -93,6 +93,7 @@ export const reducer = (state = initialState, action) => {
       };
     case SIGN_UP_SUCCESS:
       return {
+        ...state,
         user: action.payload,
         guides: null,
         error: "",
@@ -102,8 +103,8 @@ export const reducer = (state = initialState, action) => {
       };
     case GET_USERS_START:
       return {
+        ...state,
         users: null,
-
         error: "",
         isLoading: true,
         isLoggingIn: false,
@@ -111,8 +112,8 @@ export const reducer = (state = initialState, action) => {
       };
     case GET_USERS_SUCCESS:
       return {
+        ...state,
         users: action.payload,
-
         error: "",
         isLoading: false,
         isLoggingIn: false,

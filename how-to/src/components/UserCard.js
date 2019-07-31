@@ -1,12 +1,14 @@
 import React from "react";
-import { Card } from "semantic-ui-react";
+import { Card, Image } from "semantic-ui-react";
 
 const UserCard = ({ user }) => {
   return (
     <Card>
       <Card.Content>
-        <Card.Header>username</Card.Header>
-        <Card.Meta>description</Card.Meta>
+        <Image floated="left" size="mini" src={user.profileimage} />
+        <Card.Header>{user.fullname}</Card.Header>
+        <Card.Meta>{user.username}</Card.Meta>
+        <Card.Meta>{user.email}</Card.Meta>
       </Card.Content>
     </Card>
   );

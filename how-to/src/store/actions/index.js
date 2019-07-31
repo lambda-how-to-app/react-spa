@@ -12,13 +12,18 @@ export const login = credentials => dispatch => {
     .post("/api/v1/auth/login", credentials)
     .then(res => {
       console.log(res);
+      if (res.data.body.guide) {
+        localStorage.setItem("userType", "creator");
+      } else {
+        localStorage.setItem("userType", "user");
+      }
       localStorage.setItem("token", res.data.body.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.body });
       return true;
     })
     .catch(err => {
       console.log(err);
-      dispatch({ type: LOGIN_FAILURE, payload: err.data.message });
+      dispatch({ type: LOGIN_FAILURE });
     });
 };
 
@@ -52,12 +57,14 @@ export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
 
 export const signUp = credentials => dispatch => {
+  console.log(credentials);
   dispatch({ type: SIGN_UP_START });
   return axiosWithAuth()
     .post("/api/v1/auth/signup", credentials)
     .then(res => {
       console.log(res);
       localStorage.setItem("token", res.data.body.token);
+
       dispatch({ type: SIGN_UP_SUCCESS, payload: res.data.body });
       return true;
     })
@@ -74,7 +81,7 @@ export const getUsers = () => dispatch => {
   dispatch({ type: GET_USERS_START });
 
   return axiosWithAuth()
-    .get("/api/v1/profile")
+    .get("/api/v1/users")
     .then(res => {
       console.log(res);
       dispatch({ type: GET_USERS_SUCCESS, payload: res.data.body });
