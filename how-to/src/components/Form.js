@@ -1,43 +1,34 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 
-// const Form = (props) => {
-//     console.log(props);
-//     const { submitPerson, initialPerson, buttonText, history } = props;
-//     const [person, setPerson] = useState(initialPerson || {name: "", email: "", role: ""});
-    
-//     const handleChange = event => {
-//         setPerson({...person, [event.target.name]: event.target.value});
-//     };
+const Form = (props) => {
+    // console.log(props);
+    const { initialGuides, history } = props;
+    const [guides, setGuides] = useState(initialGuides || { name: "", img: "", keyword: [], ingredients: [], steps: [] });
+   
+    console.log(guides);
 
-//     const handleSubmit = event => {
-//         event.preventDefault();
-//         // setPeople(people => [...people, person]);
-//         submitPerson(person);
-//         setPerson({name: "", email: "", role: ""});
-//         history.push("/");
-//     };
+    const handleChange = event => {
+        setGuides({...guides, [event.target.name]: event.target.value});
+    };
 
-//     return (
-//         <form onSubmit={handleSubmit}>
-//             <input placeholder="name" 
-//                 value={person.name}
-//                 name="name"
-//                 onChange={handleChange}
-//             />
-//             <input placeholder="email" 
-//                 value={person.email}
-//                 name="email"
-//                 type="email"
-//                 onChange={handleChange} 
-//             />
-//             <input placeholder="role" 
-//                 value={person.role}
-//                 name="role"
-//                 onChange={handleChange} 
-//             />
-//             <button type="submit">{buttonText}</button>
-//         </form>
-//     );
-// };
+    const handleSubmit = event => {
+        event.preventDefault();
+        setGuides(guide => [...guide, guides]);
+        // submitGuide(guides);
+        // setGuides({ name: "", img: "", keyword: [], ingredients: [], steps: [] });
+        history.push("/");
+    };
 
-// export default Form;
+    return (
+        <form onSubmit={handleSubmit}>
+            <input placeholder="Guide Name" 
+                value={guides.name}
+                name="name"
+                onChange={handleChange}
+            />
+            <button type="submit">Save</button>
+        </form>
+    );
+};
+
+export default Form;
