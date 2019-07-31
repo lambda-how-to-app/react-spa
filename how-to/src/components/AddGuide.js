@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { Input, Icon } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import NewIngredient from './NewStep';
+
 //instead of this insane thing i'm trying to do, i should create an array of objects for each of the threeish forms.
 //the form-objects should have a content key, value will be the user input
 // we'll map over each array and create a series of elements based on user input with a unique key/ID 
 // this means we'll need three other 'helper' components to make this form work. 
-
+// one for photos, one for steps and one for ingredients.
 
 const AddGuide = () => {
     const [ingredients, setIngredients] = useState([]);

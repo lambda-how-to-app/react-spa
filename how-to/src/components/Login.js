@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Button, Form, Header, Input } from "semantic-ui-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+
+import { login } from "../store/actions";
 
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { axiosWithAuth } from "../utilities/axiosWithAuth";
@@ -9,6 +12,7 @@ import { axiosWithAuth } from "../utilities/axiosWithAuth";
 import "./Login.css";
 
 const Login = (props, { isSubmitting }) => {
+  console.log("Login props: ", props);
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
       .email()
@@ -33,27 +37,25 @@ const Login = (props, { isSubmitting }) => {
         onSubmit={(values, actions) => {
           console.log(actions);
           console.log(values);
-          return axiosWithAuth()
-            .post("/api/v1/auth/login", values)
-            .then(res => {
-              console.log(res);
-              setValue(res.data.body.token);
-              actions.resetForm("");
-            })
-            .catch(err => {
-              console.log(err);
-            });
+          props.login(values).then(res => {
+            if (res) {
+              props.history.push("/creator-dashboard");
+            }
+          });
+          actions.resetForm("");
         }}
         render={({
           touched,
           errors,
           handleSubmit,
           handleChange,
-          handleBlur
+          handleBlur,
+          values
         }) => {
           return (
             <Form className="formContainer" onSubmit={handleSubmit}>
               <Form.Field
+                value={values.email || ""}
                 label="Email Address"
                 className="emailContainer"
                 control={Input}
@@ -68,6 +70,7 @@ const Login = (props, { isSubmitting }) => {
                 <p style={{ margin: "0", color: "red" }}>{errors.email}</p>
               ) : null}
               <Form.Field
+                value={values.password || ""}
                 label="Password"
                 className="passwordContainer"
                 control={Input}
@@ -89,7 +92,7 @@ const Login = (props, { isSubmitting }) => {
               <Button className="loginButton" type="submit" color="blue">
                 Sign In &rarr;
               </Button>
-              {isSubmitting && "Loading!"}
+
               <p className="resetCred">
                 Don't have an account?{" "}
                 <a href="#" className="newAcct">
@@ -97,6 +100,7 @@ const Login = (props, { isSubmitting }) => {
                 </a>{" "}
                 here!
               </p>
+              {props.isLoggingIn && <div>"Loading!"</div>}
             </Form>
           );
         }}
@@ -105,4 +109,20 @@ const Login = (props, { isSubmitting }) => {
   );
 };
 
-export default Login;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    user: state.user,
+    users: state.users,
+    guides: state.guides,
+    error: state.error,
+    isLoading: state.isLoading,
+    isLoggingIn: state.isLoggingIn,
+    fetchingData: state.fetchingData
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);
