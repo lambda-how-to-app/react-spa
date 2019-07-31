@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, Icon } from 'semantic-ui-react'
+import { Input, Header, Modal, Form } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import AddNewStep from './AddNewStep';
 import AddGuideImages from './AddGuideImages.js';
@@ -16,6 +16,11 @@ const AddGuide = () => {
 
     const handleChange = (event) => {
         setFieldValues(event.target.value)
+    }
+
+    const handleImageSubmit = (event) => {
+        event.preventDefault();
+        setImages([...images], event.target.value);
     }
 
     const handleTitleSubmit = event => {
@@ -38,6 +43,25 @@ const AddGuide = () => {
         setGuide({"title": title, "images": [...images], "ingredients": [...ingredients], "steps":[...steps]});
         {/*This is where it would send the data to the back end. all data is saved as an object in a var called guide*/}
     }
+
+    const AddImageModal = () => (
+        <Modal trigger={<button>add images</button>}>
+          <Modal.Header>Add a photo</Modal.Header>
+          <Modal.Content form>
+            <Modal.Description>
+              <Header>enter image URLS</Header>
+              <Form>
+                  <Form.Field>
+                  <label>URL:</label>
+                  <input placeholder='Image URL Here...' />
+                  </Form.Field>
+                  <Button type='submit' onSubmit={event => handleImageSubmit(event)}>Submit</Button>
+              </Form>
+            </Modal.Description>
+          </Modal.Content>
+        </Modal>
+      )
+
     return (
         <>
             <form onSubmit={event => handleTitleSubmit(event)}>
@@ -45,8 +69,7 @@ const AddGuide = () => {
             </form>
 
             <AddGuideImages />
-            <button><p>add images</p></button>
-            {/*design guide doesnt really have an image enter idea. i'll create a modal to accept a list of image urls?*/}
+            <button onClick = {AddImageModal()}>add images</button>
 
             <div>
                 <h1>What's Needed:</h1>
