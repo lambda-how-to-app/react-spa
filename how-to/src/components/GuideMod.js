@@ -8,6 +8,8 @@ const GuideMod = () => {
         <Header as="h4" textAlign='right'>
           {/* replace /edit with correct endpoint */}
           <Link to={`/edit`}>Edit</Link>
+          { " | "}
+          <Link to={`/share`}>Share</Link>
         </Header>
     </div> 
   );
