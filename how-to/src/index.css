@@ -1,35 +1,39 @@
 #signUpButton {
-    width:349px;
-    background-color: #018786;
-}  
+  width: 349px;
+  background-color: #018786;
+}
 
-#CreatorButton , #GenralButton {
-    width:350px;
-    height: 250px;
-} 
+#CreatorButton,
+#GenralButton {
+  width: 350px;
+  height: 250px;
+}
 
-#FirstContent , #secondContent {
-     display: flex;
-     justify-content: space-between;
-     flex-wrap: wrap; 
-     font-size: 15px; 
-     line-height: 2rem; 
-}  
+#FirstContent,
+#secondContent {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 15px;
+  line-height: 2rem;
+}
 
 #heading {
-    font-weight: bold;
-    font-size:30px;
-}    
+  font-weight: bold;
+  font-size: 30px;
+}
 
-#GeneralAcc , #CreatorAcc {
-    font-weight: bold;
-    font-size:30px;
-}  
+#GeneralAcc,
+#CreatorAcc {
+  font-weight: bold;
+  font-size: 30px;
+}
 
 .link {
-    color:white;
+  color: white;
 }
    
+
 
 #Cantainer{
 
@@ -47,4 +51,11 @@
     width:130px;
     height:120px;
 }
+.guide-list-container {
+  width: 30vw;
 
+}
+
+.guide-card {
+  margin: 100px 0;
+}

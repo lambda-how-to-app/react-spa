@@ -1,8 +1,14 @@
 import React from "react";
-import { Image } from "semantic-ui-react";
+import { Card, Image } from "semantic-ui-react";
 
-export default function GuideImage() {
+const GuideImage = (props) => {
     return (
-        <Image src='/image' alt="Photo of Guide" size='small' />
+        <div>
+            <Card>
+                <Image src={props.src} alt="photo of your uploaded guide" />
+            </Card>
+        </div>
     );
-}
+};
+
+export default GuideImage;

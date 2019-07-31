@@ -1,24 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
+import { Route } from "react-router-dom";
 import { Header } from "semantic-ui-react";
-import GuideTitle from './GuideTitle.js';
-import GuideImage from './GuideImage.js';
-import GuideKeywords from './GuideKeywords.js';
-import GuideIngredients from "./GuideIngredients.js";
-import GuideStepCard from "./GuideStepCard.js";
-import GuideMod from './GuideMod.js';
 
-const Guide = () => {
-  return ( 
+// import Form from './Form.js';
+import Card from "./Card.js";
+import choco from "../chocomilk.jpg";
+
+export default function Guide() {
+  const [guide, setGuide] = useState({
+    name: "Make Chocolate Milk",
+    img: choco,
+    keyword: ["chocolate", "beverage", "dessert"],
+    ingredients: ["milk", "chocolate syrup", "spoon", "cup"],
+    steps: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
+  });
+
+  const editGuide = editedGuide => {
+    const guideCopy = [...guide];
+    const guideIndex = guideCopy.findIndex(
+      guide => guide.name === editedGuide.name
+    );
+    guideCopy[guideIndex] = editedGuide;
+    setGuide(guideCopy);
+  };
+
+  return (
     <div>
       <Header as="h1">How-To</Header>
-      <GuideTitle />
-      <GuideImage />
-      <GuideKeywords />
-      <GuideIngredients />
-      <GuideStepCard />
-      <GuideMod />
-    </div> 
-  );
-};
+      <Card guide={guide} />
 
-export default Guide;
+      {/* <Route path="/edit/:name"
+        render={props => {
+          const guides = guide.find(guides => guides.id.toString() === props.match.params.name);
+          return <Form {...props}
+            initialGuide={guides}
+            submitGuide={editGuide}
+            buttonText="Edit"
+          />;
+        }}/> */}
+    </div>
+  );
+
+  // import GuideTitle from "./GuideTitle.js";
+  // import GuideImage from "./GuideImage.js";
+  // import GuideKeywords from "./GuideKeywords.js";
+  // import GuideIngredients from "./GuideIngredients.js";
+  // import GuideStepCard from "./GuideStepCard.js";
+  // import GuideMod from "./GuideMod.js";
+
+  // const Guide = ({ guide }) => {
+  //   console.log(guide);
+  //   if (guide) {
+  //     return (
+  //       <div className="guide-card">
+  //         <hr />
+  //         <Header as="h1">How-To</Header>
+  //         <GuideTitle title={guide.name} />
+  //         <GuideImage images={guide.images} />
+  //         <GuideKeywords keywords={guide.keywords} />
+  //         <GuideIngredients materials={guide.materials} />
+  //         {guide.instructions
+  //           ? guide.instructions.map((guide, index) => (
+  //               <GuideStepCard index={index} guide={guide} />
+  //             ))
+  //           : null}
+
+  //         <GuideMod />
+  //       </div>
+  //     );
+  //   } else {
+  //     return null;
+  //   }
+  // };
+}
