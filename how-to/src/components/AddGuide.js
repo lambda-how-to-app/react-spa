@@ -7,57 +7,70 @@ import AddIngredients from './AddIngredients.js';
 
 
 const AddGuide = () => {
-   const [title, setTitle] = useState('');
-   const [images, setImages] = useState('');
-   const [ingredients, setIngredients] = useState([]);
-   const [steps, setSteps] = useState([]);
-   const [fieldValues, setFieldValues] = useState();
-   const [guide, setGuide]= useState();
+    const [title, setTitle] = useState('');
+    const [images, setImages] = useState('');
+    const [ingredients, setIngredients] = useState([]);
+    const [steps, setSteps] = useState([]);
+    const [fieldValues, setFieldValues] = useState('');
+    const [guide, setGuide] = useState({});
 
-   const handleChange= (event) => {
-       setFieldValues(event.target.value)
-   }
+    const handleChange = (event) => {
+        setFieldValues(event.target.value)
+    }
 
-   const handleTitleSubmit = event => {
+    const handleTitleSubmit = event => {
         event.preventDefault();
         setTitle(event.target.value);
     };
-    
-   const handleIngredientSubmit = event => {
-       event.preventDefault();
-       setIngredients([...ingredients], event.target.value)
-   }
 
-   const handleStepSubmit = event => {
-       event.preventDefault();
-       setSteps([...steps], event.target.value);
-   }
+    const handleIngredientSubmit = event => {
+        event.preventDefault();
+        setIngredients([...ingredients], event.target.value)
+    }
+
+    const handleStepSubmit = event => {
+        event.preventDefault();
+        setSteps([...steps], event.target.value);
+    }
+
+    const handleSave = event => {
+        event.preventDefault();
+        setGuide({"title": title, "images": [...images], "ingredients": [...ingredients], "steps":[...steps]});
+        {/*This is where it would send the data to the back end. all data is saved as an object in a var called guide*/}
+    }
     return (
-       <>
-        <form onSubmit={event => handleTitleSubmit(event)}>
-        <Input placeholder='Add Guide Title' onChange={event=> handleChange(event)} />
-        </form>
+        <>
+            <form onSubmit={event => handleTitleSubmit(event)}>
+                <Input placeholder='Add Guide Title' onChange={event => handleChange(event)} value={title} />
+            </form>
 
-        <AddGuideImages/>
-        <link>add images</link>
-        
-        <div>
-        <h1>What's Needed:</h1>
-        <AddIngredients/>
-        <form onSubmit={event => handleIngredientSubmit(event)}>
-        <Input placeholder='enter what is needed...' onChange={event=> handleChange(event)}/>
-        </form>
-        </div>
-        
-        <div>
-        <AddNewStep/>
-        <h2>Add A Step</h2>
-        <form onSubmit={event => handleStepSubmit(event)}>
-        <Input placeholder='enter steps...' onChange={event=> handleChange(event)}/>
-        </form>
-        <button>Add Another</button>
-        </div>
-       </>
+            <AddGuideImages />
+            <button><p>add images</p></button>
+            {/*design guide doesnt really have an image enter idea. i'll create a modal to accept a list of image urls?*/}
+
+            <div>
+                <h1>What's Needed:</h1>
+                <AddIngredients ingredients={ingredients} />
+                <form onSubmit={event => handleIngredientSubmit(event)}>
+                    <Input placeholder='enter what is needed...' onChange={event => handleChange(event)} />
+                </form>
+            </div>
+
+            <div>
+                <AddNewStep steps={steps}/>
+                <h2>Add A Step</h2>
+                <form onSubmit={event => handleStepSubmit(event)}>
+                    <Input placeholder='enter steps...' onChange={event => handleChange(event)} />
+                </form>
+                <button>Add Another</button>
+            </div>
+
+            <div>
+                <button onClick={handleSave}><p>Save</p></button>
+                <p>|</p>
+                <link><p>Delete</p></link>
+            </div>
+        </>
     )
 }
 
@@ -72,7 +85,7 @@ export default AddGuide;
 //         event.preventDefault();
 //     }
 //     const elementKiller = (event, arr) => { arr.splice(arr.indexOf(event.target.value)) };
-    
+
 //     const stepEnterHandler = (event) => {
 //         if (event.key === 'Enter') {
 //             //target element and add a new deletable "input" field above the input.
