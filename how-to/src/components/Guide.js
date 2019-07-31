@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import { Header } from "semantic-ui-react";
 
-// import Form from './Form.js';
+import Form from './Form.js';
 import Card from "./Card.js";
 import choco from "../chocomilk.jpg";
 
 export default function Guide() {
   const [guide, setGuide] = useState({
+    id: 0,
     name: "Make Chocolate Milk",
     img: choco,
     keyword: ["chocolate", "beverage", "dessert"],
@@ -15,10 +16,12 @@ export default function Guide() {
     steps: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
   });
 
+  console.log(guide);
+
   const editGuide = editedGuide => {
     const guideCopy = [...guide];
     const guideIndex = guideCopy.findIndex(
-      guide => guide.name === editedGuide.name
+      guide => guide.id === editedGuide.id
     );
     guideCopy[guideIndex] = editedGuide;
     setGuide(guideCopy);
@@ -28,16 +31,14 @@ export default function Guide() {
     <div>
       <Header as="h1">How-To</Header>
       <Card guide={guide} />
-
-      {/* <Route path="/edit/:name"
+      <Route path="/edit/:name"
         render={props => {
-          const guides = guide.find(guides => guides.id.toString() === props.match.params.name);
+          const guides = guide.find(guides => guides.id.toString() === props.match.params.id);
           return <Form {...props}
-            initialGuide={guides}
-            submitGuide={editGuide}
-            buttonText="Edit"
+          initialGuide={guides}
+          submitGuide={editGuide}
           />;
-        }}/> */}
+      }}/>
     </div>
   );
 

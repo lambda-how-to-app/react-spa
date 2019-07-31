@@ -15,6 +15,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import AddGuide from "./components/AddGuide";
 import SignUpForm from "./components/forms/SignUpForm";
 
+import Form from "./components/Form.js";
 
 const App = () => {
   return (
@@ -29,7 +30,8 @@ const App = () => {
         <PrivateRoute path="/creator-dashboard" component={CreatorDashboard} />
         <PrivateRoute path="/guides" component={GuideList} />
         <Route path= '/add-guide' component={AddGuide} />
-
+        
+        <Route path="/edit" render={props => <Form {...props} />} />
         {/* <Login /> */}
         {/* <Signup />
         <UsersList /> */}
