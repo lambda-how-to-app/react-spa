@@ -56,7 +56,7 @@ const AddGuide = () => {
             <Modal.Header>Add a photo</Modal.Header>
             <Modal.Content form>
                 <Modal.Description>
-                    <Header>enter image URLS</Header>
+                    <Header>enter image URL</Header>
                     <Form onSubmit={event => handleImageSubmit(event)}>
                         <Form.Field>
                             <label>URL:
