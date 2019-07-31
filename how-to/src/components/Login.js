@@ -34,9 +34,9 @@ const Login = (props, { isSubmitting }) => {
           props.login(values).then(res => {
             if (res) {
               props.history.push("/creator-dashboard");
+              actions.resetForm("");
             }
           });
-          actions.resetForm("");
         }}
         render={({
           touched,
