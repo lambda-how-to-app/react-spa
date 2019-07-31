@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import '../../src/index.css'
 
-function UserDashboard() {
+function UserDashboard(props) {
+  console.log("User dashboard")
+  console.log(props)
   return (
     <div id='Cantainer'>
       <div id="topcontainer">
