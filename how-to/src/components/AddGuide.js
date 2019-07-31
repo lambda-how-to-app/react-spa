@@ -4,9 +4,9 @@ import { Input, Icon } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
     //instead of this insane thing i'm trying to do, i should create an array of objects for each of the threeish forms.
-    //the form-objects should have an ID key, and a content key.  the content key's value will be the user input
-    //we'll map over each array and create a series of elements based on user input with a unique key/ID 
-    // this means we'll need three other 'helper' components to make this form work.
+    //the form-objects should have a content key, value will be the user input
+    // we'll map over each array and create a series of elements based on user input with a unique key/ID 
+    // this means we'll need three other 'helper' components to make this form work. 
 
     ;
 const AddGuide = () => {
