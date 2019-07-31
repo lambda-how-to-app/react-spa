@@ -10,6 +10,7 @@ import Welcome from "./components/Welcome";
 import NavBar from "./components/NavBar";
 import UserDashboard from "./components/UserDashboard";
 import CreatorDashboard from "./components/CreatorDashboard";
+import GuideList from "./components/GuideList";
 import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/sign-up" render={props => <Signup {...props} />} />
         <PrivateRoute path="/user-dashboard" component={UserDashboard} />
         <PrivateRoute path="/creator-dashboard" component={CreatorDashboard} />
+        <PrivateRoute path="/guides" component={GuideList} />
 
         {/* <Login /> */}
         {/* <Signup />

@@ -39,7 +39,7 @@ const Login = (props, { isSubmitting }) => {
           console.log(values);
           props.login(values).then(res => {
             if (res) {
-              props.history.push("/user-dashboard");
+              props.history.push("/creator-dashboard");
             }
           });
           actions.resetForm("");
@@ -92,7 +92,7 @@ const Login = (props, { isSubmitting }) => {
               <Button className="loginButton" type="submit" color="blue">
                 Sign In &rarr;
               </Button>
-              {isSubmitting && "Loading!"}
+
               <p className="resetCred">
                 Don't have an account?{" "}
                 <a href="#" className="newAcct">
@@ -100,6 +100,7 @@ const Login = (props, { isSubmitting }) => {
                 </a>{" "}
                 here!
               </p>
+              {props.isLoggingIn && <div>"Loading!"</div>}
             </Form>
           );
         }}
