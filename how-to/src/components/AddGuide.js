@@ -11,6 +11,7 @@ const AddGuide = () => {
     const [images, setImages] = useState('');
     const [ingredients, setIngredients] = useState([]);
     const [steps, setSteps] = useState([]);
+    const [keywords, setKeywords] = useState();
     const [fieldValues, setFieldValues] = useState('');
     const [guide, setGuide] = useState({});
 
@@ -18,15 +19,21 @@ const AddGuide = () => {
         setFieldValues(event.target.value)
     }
 
-    const handleImageSubmit = (event) => {
-        event.preventDefault();
-        setImages([...images], event.target.value);
-    }
 
     const handleTitleSubmit = event => {
         event.preventDefault();
         setTitle(event.target.value);
     };
+
+    const handleImageSubmit = (event) => {
+        event.preventDefault();
+        setImages([...images], event.target.value);
+    }
+
+    const handleKeywordSubmit = (event) => {
+        event.preventDefault();
+        setKeywords([...keywords], event.target.value)
+    }
 
     const handleIngredientSubmit = event => {
         event.preventDefault();
@@ -40,27 +47,28 @@ const AddGuide = () => {
 
     const handleSave = event => {
         event.preventDefault();
-        setGuide({"title": title, "images": [...images], "ingredients": [...ingredients], "steps":[...steps]});
-        {/*This is where it would send the data to the back end. all data is saved as an object in a var called guide*/}
+        setGuide({ "title": title, "images": [...images], "ingredients": [...ingredients], "steps": [...steps] });
+        {/*This is where it would send the data to the back end. all data is saved as an object in a var called guide*/ }
     }
 
     const AddImageModal = () => (
         <Modal trigger={<button>add images</button>}>
-          <Modal.Header>Add a photo</Modal.Header>
-          <Modal.Content form>
-            <Modal.Description>
-              <Header>enter image URLS</Header>
-              <Form>
-                  <Form.Field>
-                  <label>URL:</label>
-                  <input placeholder='Image URL Here...' />
-                  </Form.Field>
-                  <Button type='submit' onSubmit={event => handleImageSubmit(event)}>Submit</Button>
-              </Form>
-            </Modal.Description>
-          </Modal.Content>
+            <Modal.Header>Add a photo</Modal.Header>
+            <Modal.Content form>
+                <Modal.Description>
+                    <Header>enter image URLS</Header>
+                    <Form onSubmit={event => handleImageSubmit(event)}>
+                        <Form.Field>
+                            <label>URL:
+                               <input placeholder='Image URL Here...' />
+                            </label>
+                        </Form.Field>
+                        <Button type='submit'>Submit</Button>
+                    </Form>
+                </Modal.Description>
+            </Modal.Content>
         </Modal>
-      )
+    )
 
     return (
         <>
@@ -69,7 +77,15 @@ const AddGuide = () => {
             </form>
 
             <AddGuideImages />
-            <button onClick = {AddImageModal()}>add images</button>
+            <button onClick={AddImageModal()}>add images</button>
+
+            <div>
+                <form>
+                    <label>Keywords:
+                        <Input placeholder="enter keywords..." />
+                    </label>
+                </form>
+            </div>
 
             <div>
                 <h1>What's Needed:</h1>
@@ -80,7 +96,7 @@ const AddGuide = () => {
             </div>
 
             <div>
-                <AddNewStep steps={steps}/>
+                <AddNewStep steps={steps} />
                 <h2>Add A Step</h2>
                 <form onSubmit={event => handleStepSubmit(event)}>
                     <Input placeholder='enter steps...' onChange={event => handleChange(event)} />
