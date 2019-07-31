@@ -1,12 +1,19 @@
-import { users, guides } from "../../dummy-data";
-
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from "../actions";
+import {
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT,
+  GET_GUIDES_START,
+  GET_GUIDES_SUCCESS,
+  GET_GUIDES_FAILURE
+} from "../actions";
 
 const initialState = {
-  user: {},
-  users: users,
-  guides: guides,
+  user: null,
+  users: {},
+  guides: null,
   error: "",
+  isLoggedIn: false,
   isLoading: false,
   isLoggingIn: false,
   fetchingData: false
@@ -25,9 +32,11 @@ export const reducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
+        guides: null,
         user: action.payload,
         error: "",
         isLoading: false,
+        isLoggedIn: true,
         isLoggingIn: false,
         fetchingData: false
       };
@@ -35,6 +44,36 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         error: "Login failed, please try again",
+        isLoading: false,
+        isLoggingIn: false,
+        fetchingData: false,
+        isLoggedIn: false
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        guides: null,
+        user: null,
+        error: "",
+        isLoading: false,
+        isLoggingIn: false,
+        fetchingData: false,
+        isLoggedIn: false
+      };
+    case GET_GUIDES_START:
+      return {
+        ...state,
+        guides: null,
+        error: "",
+        isLoading: true,
+        isLoggingIn: false,
+        fetchingData: true
+      };
+    case GET_GUIDES_SUCCESS:
+      return {
+        ...state,
+        guides: action.payload,
+        error: "",
         isLoading: false,
         isLoggingIn: false,
         fetchingData: false
