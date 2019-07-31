@@ -1,16 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
+import { getUsers } from "../store/actions";
 
-const UsersList = () => {
+const UsersList = props => {
   return (
     <div>
-      <h6>Username</h6>
-      <p>User info</p>
-      <p>User info</p>
-      <p>User info</p>
-      <p>User info</p>
-      <p>User info</p>
+      <button onClick={props.getUsers}>Get All Users</button>
     </div>
   );
 };
 
-export default UsersList;
+export default connect(
+  null,
+  { getUsers }
+)(UsersList);

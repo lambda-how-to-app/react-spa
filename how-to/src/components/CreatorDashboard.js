@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import UsersList from "./UsersList";
+
 const BodyWrap = styled.div`
   background-color: #e5e5e5;
   width: 374px;
@@ -74,6 +76,7 @@ const CardP = styled.p`
 const CreatorDashboard = props => {
   return (
     <BodyWrap>
+      <UsersList />
       <Span>
         {" "}
         {/*user card */}

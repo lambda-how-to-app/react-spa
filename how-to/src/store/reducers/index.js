@@ -5,15 +5,21 @@ import {
   LOGOUT,
   GET_GUIDES_START,
   GET_GUIDES_SUCCESS,
-  GET_GUIDES_FAILURE
+  GET_GUIDES_FAILURE,
+  SIGN_UP_START,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAILURE,
+  GET_USERS_START,
+  GET_USERS_SUCCESS,
+  GET_USERS_FAILURE
 } from "../actions";
 
 const initialState = {
   user: null,
-  users: {},
+  users: null,
+
   guides: null,
   error: "",
-  isLoggedIn: false,
   isLoading: false,
   isLoggingIn: false,
   fetchingData: false
@@ -36,7 +42,6 @@ export const reducer = (state = initialState, action) => {
         user: action.payload,
         error: "",
         isLoading: false,
-        isLoggedIn: true,
         isLoggingIn: false,
         fetchingData: false
       };
@@ -46,8 +51,7 @@ export const reducer = (state = initialState, action) => {
         error: "Login failed, please try again",
         isLoading: false,
         isLoggingIn: false,
-        fetchingData: false,
-        isLoggedIn: false
+        fetchingData: false
       };
     case LOGOUT:
       return {
@@ -57,8 +61,7 @@ export const reducer = (state = initialState, action) => {
         error: "",
         isLoading: false,
         isLoggingIn: false,
-        fetchingData: false,
-        isLoggedIn: false
+        fetchingData: false
       };
     case GET_GUIDES_START:
       return {
@@ -73,6 +76,43 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         guides: action.payload,
+        error: "",
+        isLoading: false,
+        isLoggingIn: false,
+        fetchingData: false
+      };
+    case SIGN_UP_START:
+      return {
+        user: null,
+        users: {},
+        guides: null,
+        error: "",
+        isLoading: true,
+        isLoggingIn: false,
+        fetchingData: false
+      };
+    case SIGN_UP_SUCCESS:
+      return {
+        user: action.payload,
+        guides: null,
+        error: "",
+        isLoading: false,
+        isLoggingIn: false,
+        fetchingData: false
+      };
+    case GET_USERS_START:
+      return {
+        users: null,
+
+        error: "",
+        isLoading: true,
+        isLoggingIn: false,
+        fetchingData: true
+      };
+    case GET_USERS_SUCCESS:
+      return {
+        users: action.payload,
+
         error: "",
         isLoading: false,
         isLoggingIn: false,
