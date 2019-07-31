@@ -7,7 +7,6 @@ import * as Yup from "yup";
 import { Button, Form, Header, Input, Radio } from "semantic-ui-react";
 
 import { signUp } from "../store/actions";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const Signup = (props, { isSubmitting }) => {
   const SecretDiv = styled.div`
@@ -20,18 +19,18 @@ const Signup = (props, { isSubmitting }) => {
   `;
 
   const LoginSchema = Yup.object().shape({
-    firstname: Yup.string().required("First name is required"),
-    lastname: Yup.string().required("Last name is required"),
+    // fullname: Yup.string().required("Name is required"),
+
     username: Yup.string().required("Username is required"),
     email: Yup.string()
       .email()
       .required("Your email is required"),
     password: Yup.string()
       .min(8, "Your password must be at least 8 characters long")
-      .required("Your password is required"),
-    confirmpassword: Yup.string()
-      .min(8, "Your password must be at least 8 characters long")
       .required("Your password is required")
+    // confirmpassword: Yup.string()
+    //   .min(8, "Your password must be at least 8 characters long")
+    //   .required("Your password is required")
   });
 
   return (
@@ -41,22 +40,23 @@ const Signup = (props, { isSubmitting }) => {
       <Formik
         validationSchema={LoginSchema}
         initialValues={{
-          guide: false,
-          firstname: "",
-          lastname: "",
+          fullname: "",
           username: "",
           email: "",
           password: "",
-          confirmpassword: ""
+          guide: false
+          /* confirmpassword: "" */
         }}
         onSubmit={(values, actions) => {
+          console.log(values);
           props.signUp(values).then(res => {
             console.log(res);
             if (res) {
-              props.history.push("/creator-dashboard");
+              const userType = localStorage.getItem("userType");
+              props.history.push(`/${userType}-dashboard`);
+              actions.resetForm("");
             }
           });
-          actions.resetForm("");
         }}
         render={({
           touched,
@@ -91,35 +91,21 @@ const Signup = (props, { isSubmitting }) => {
               </Form.Group>
 
               <Form.Field
-                label="First Name"
-                value={values.firstname || ""}
+                label="Full Name"
+                value={values.fullname || ""}
                 className="emailContainer"
                 control={Input}
                 autoComplete="off"
-                placeholder="First Name"
-                name="firstname"
-                type="firstname"
+                placeholder="Full Name"
+                name="fullname"
+                type="fullname"
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.firstname && touched.firstname ? (
-                <p style={{ margin: "0", color: "red" }}>{errors.firstname}</p>
+              {errors.fullname && touched.fullname ? (
+                <p style={{ margin: "0", color: "red" }}>{errors.fullname}</p>
               ) : null}
-              <Form.Field
-                label="Last Name"
-                value={values.lastname || ""}
-                className="passwordContainer"
-                control={Input}
-                autoComplete="off"
-                placeholder="Last Name"
-                name="lastname"
-                type="text"
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.lastname && touched.lastname ? (
-                <p style={{ margin: "0", color: "red" }}>{errors.lastname}</p>
-              ) : null}
+
               <Form.Field
                 label="Username"
                 value={values.username || ""}
@@ -165,7 +151,7 @@ const Signup = (props, { isSubmitting }) => {
               {errors.password && touched.password ? (
                 <p style={{ margin: "0", color: "red" }}>{errors.password}</p>
               ) : null}
-              <Form.Field
+              {/* <Form.Field
                 label="Confirm Password"
                 value={values.confirmpassword || ""}
                 className="passwordContainer"
@@ -181,7 +167,7 @@ const Signup = (props, { isSubmitting }) => {
                 <p style={{ margin: "0", color: "red" }}>
                   {errors.confirmpassword}
                 </p>
-              ) : null}
+              ) : null} */}
 
               <Button className="loginButton" type="submit" color="blue">
                 Sign Up &rarr;
@@ -198,7 +184,14 @@ const Signup = (props, { isSubmitting }) => {
   );
 };
 
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    user: state.user
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { signUp }
 )(Signup);
