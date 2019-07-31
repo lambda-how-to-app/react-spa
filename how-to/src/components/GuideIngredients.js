@@ -10,7 +10,7 @@ const GuideIngredients = props => {
       <Header as="h3" textAlign="center">
         What's Needed
       </Header>
-      <List bulleted>
+      <List bulleted className="ingredients">
         {/* to be replaced with back end data */}
         {props.ingredients.map(ingred => (
           <List.Item>{ingred}</List.Item>
