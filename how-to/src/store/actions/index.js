@@ -1,6 +1,6 @@
 import { axiosWithAuth } from "../../utilities/axiosWithAuth";
 
-import { guides } from "../../dummy-data";
+import { guides, users } from "../../dummy-data";
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -35,16 +35,16 @@ export const GET_GUIDES_FAILURE = "GET_GUIDES_FAILURE";
 
 export const getGuides = () => dispatch => {
   dispatch({ type: GET_GUIDES_START });
-  dispatch({ type: GET_GUIDES_SUCCESS, payload: guides });
 
-  // return axiosWithAuth()
-  //   .get("/api/v1/guides/profile")
-  //   .then(res => {
-  //     console.log(res);
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
+  return axiosWithAuth()
+    .get("/api/v1/lifehack")
+    .then(res => {
+      console.log(res);
+      dispatch({ type: GET_GUIDES_SUCCESS, payload: res.data.body });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 export const SIGN_UP_START = "SIGN_UP_START";
@@ -72,12 +72,13 @@ export const GET_USERS_FAILURE = "GET_USERS_FAILURE";
 
 export const getUsers = () => dispatch => {
   dispatch({ type: GET_USERS_START });
+
   return axiosWithAuth()
-    .get("/api/v1/guides/profile")
+    .get("/api/v1/profile")
     .then(res => {
       console.log(res);
-      // dispatch({ type: GET_USERS_SUCCESS, payload: res.data.body });
-      // return true;
+      dispatch({ type: GET_USERS_SUCCESS, payload: res.data.body });
+      return true;
     })
     .catch(err => {
       console.log(err);

@@ -8,13 +8,16 @@ import {
   GET_GUIDES_FAILURE,
   SIGN_UP_START,
   SIGN_UP_SUCCESS,
-  SIGN_UP_FAILURE
+  SIGN_UP_FAILURE,
+  GET_USERS_START,
+  GET_USERS_SUCCESS,
+  GET_USERS_FAILURE
 } from "../actions";
 
 const initialState = {
   user: null,
-  userType: "",
-  users: {},
+  users: null,
+
   guides: null,
   error: "",
   isLoading: false,
@@ -81,7 +84,6 @@ export const reducer = (state = initialState, action) => {
     case SIGN_UP_START:
       return {
         user: null,
-        userType: "",
         users: {},
         guides: null,
         error: "",
@@ -92,8 +94,25 @@ export const reducer = (state = initialState, action) => {
     case SIGN_UP_SUCCESS:
       return {
         user: action.payload,
-        userType: "",
         guides: null,
+        error: "",
+        isLoading: false,
+        isLoggingIn: false,
+        fetchingData: false
+      };
+    case GET_USERS_START:
+      return {
+        users: null,
+
+        error: "",
+        isLoading: true,
+        isLoggingIn: false,
+        fetchingData: true
+      };
+    case GET_USERS_SUCCESS:
+      return {
+        users: action.payload,
+
         error: "",
         isLoading: false,
         isLoggingIn: false,
