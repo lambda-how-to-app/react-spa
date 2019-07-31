@@ -6,10 +6,10 @@ export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
-export const login = values => dispatch => {
+export const login = credentials => dispatch => {
   dispatch({ type: LOGIN_START });
   return axiosWithAuth()
-    .post("/api/v1/auth/login", values)
+    .post("/api/v1/auth/login", credentials)
     .then(res => {
       console.log(res);
       localStorage.setItem("token", res.data.body.token);
@@ -45,4 +45,23 @@ export const getGuides = () => dispatch => {
   //   .catch(err => {
   //     console.log(err);
   //   });
+};
+
+export const SIGN_UP_START = "SIGN_UP_START";
+export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
+export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
+
+export const signUp = credentials => dispatch => {
+  dispatch({ type: SIGN_UP_START });
+  return axiosWithAuth()
+    .post("/api/v1/auth/signup", credentials)
+    .then(res => {
+      console.log(res);
+      localStorage.setItem("token", res.data.body.token);
+      dispatch({ type: SIGN_UP_SUCCESS, payload: res.data.body });
+      return true;
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };

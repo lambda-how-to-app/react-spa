@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Button, Form, Header, Input } from "semantic-ui-react";
 
+import { signUp } from "../store/actions";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { axiosWithAuth } from "../utilities/axiosWithAuth";
 
@@ -50,30 +52,26 @@ const Signup = (props, { isSubmitting }) => {
           confirmpassword: ""
         }}
         onSubmit={(values, actions) => {
-          console.log(actions);
-          console.log(values);
-          return axiosWithAuth()
-            .post("/api/v1/auth/signup", values)
-            .then(res => {
-              console.log(res);
-              setValue(res.data.body.token);
-              actions.resetForm("");
-            })
-            .catch(err => {
-              console.log(err);
-            });
+          props.signUp(values).then(res => {
+            if (res) {
+              props.history.push("/creator-dashboard");
+            }
+          });
+          actions.resetForm("");
         }}
         render={({
           touched,
           errors,
           handleSubmit,
           handleChange,
-          handleBlur
+          handleBlur,
+          values
         }) => {
           return (
             <Form onSubmit={handleSubmit}>
               <Form.Field
                 label="First Name"
+                value={values.firstname || ""}
                 className="emailContainer"
                 control={Input}
                 autoComplete="off"
@@ -88,6 +86,7 @@ const Signup = (props, { isSubmitting }) => {
               ) : null}
               <Form.Field
                 label="Last Name"
+                value={values.lastname || ""}
                 className="passwordContainer"
                 control={Input}
                 autoComplete="off"
@@ -102,6 +101,7 @@ const Signup = (props, { isSubmitting }) => {
               ) : null}
               <Form.Field
                 label="Username"
+                value={values.username || ""}
                 className="passwordContainer"
                 control={Input}
                 autoComplete="off"
@@ -116,6 +116,7 @@ const Signup = (props, { isSubmitting }) => {
               ) : null}
               <Form.Field
                 label="Email"
+                value={values.email || ""}
                 className="passwordContainer"
                 control={Input}
                 autoComplete="off"
@@ -130,6 +131,7 @@ const Signup = (props, { isSubmitting }) => {
               ) : null}
               <Form.Field
                 label="Password"
+                value={values.password || ""}
                 className="passwordContainer"
                 control={Input}
                 autoComplete="off"
@@ -144,6 +146,7 @@ const Signup = (props, { isSubmitting }) => {
               ) : null}
               <Form.Field
                 label="Confirm Password"
+                value={values.confirmpassword || ""}
                 className="passwordContainer"
                 control={Input}
                 autoComplete="off"
@@ -174,4 +177,7 @@ const Signup = (props, { isSubmitting }) => {
   );
 };
 
-export default Signup;
+export default connect(
+  null,
+  { signUp }
+)(Signup);
