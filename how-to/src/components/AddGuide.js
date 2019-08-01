@@ -7,31 +7,38 @@ import AddIngredients from "./AddIngredients.js";
 
 const AddGuide = () => {
 
-  const [fieldValues, setFieldValues] = useState({title:"", ingredients:[], steps:''});
-  const [guide, setGuide] = useState({title:"", ingredients:[], steps:''});
+  const [fieldValues, setFieldValues] = useState({title:"", ingredients:[], steps:[]});
+  const [guide, setGuide] = useState({title:"", ingredients:[], steps:[]});
+  
   const [ingredientsArray, setIngredients] = useState([]);
+  const [stepArray, setStep] = useState([]);
 
    const handleIngredientChange = event => {
     setIngredients([...ingredientsArray, event.target.value])
-    console.log(ingredientsArray)
+    console.log('ingredient', ingredientsArray)
+   };
+   const handleStepChange = event => {
+    setStep([...stepArray, event.target.value])
+    console.log('step', stepArray)
    };
 
+   const handleStepSubmit = event => {
+    let newArray = fieldValues.steps;
+    newArray.push(stepArray[stepArray.length-1]);
+    setGuide([fieldValues.steps, ...newArray]);
+    console.log('stepvalues', fieldValues.steps);
+    setStep(['']);
+   }
   const handleIngredientSubmit = event => {
   event.preventDefault();
-  let newArray = guide.ingredients;
-  console.log('new array 1', newArray);
-
+  let newArray = fieldValues.ingredients;
   newArray.push(ingredientsArray[ingredientsArray.length-1]);
-  console.log('new array 2', newArray);
-  
-  setGuide([guide.ingredients, ...newArray]);
+  setGuide([fieldValues.ingredients, ...newArray]);
 
-  console.log("guide", guide.ingredients);
-
+  console.log("fieldValues", fieldValues.ingredients);
   setIngredients(['']);
 
  };
-
 
   const handleChange = event => {
     setFieldValues({...fieldValues, [event.target.name]:event.target.value});
@@ -42,6 +49,7 @@ const AddGuide = () => {
     event.preventDefault();
     console.log(guide);
     setGuide({...guide, ...fieldValues})
+    console.log(guide);
   };
 
   const handleSave = event => {
@@ -60,16 +68,15 @@ const AddGuide = () => {
         <label> Title:
           <Input
             type="text"
-            placeholder="Add Guide Title"
+            placeholder="Add Guide Title..."
             name="title"
             onChange={event => handleChange(event)}
           />
         </label>
 
         <div>
-          <h1>What's Needed:</h1>
-          <AddIngredients guide={guide} />
-
+          <h2>What's Needed:</h2>
+          <AddIngredients fieldValues={fieldValues} />
           {/* <form onSubmit={event => handleIngredientSubmit(event)}> */}
 
           <Input
@@ -78,7 +85,7 @@ const AddGuide = () => {
             onChange={event => handleIngredientChange(event)}
             value={ingredientsArray[ingredientsArray.length-1]}
           />
-          <button onClick={event => handleIngredientSubmit(event)}>submit ingredient</button>
+          <button onClick={event => handleIngredientSubmit(event)}>Add An Ingredient</button>
           {/* </form> */}
         </div>
 
@@ -89,9 +96,10 @@ const AddGuide = () => {
           <Input
             placeholder="enter steps..."
             name="steps"
-            onChange={event => handleChange(event)}
+            onChange={event => handleStepChange(event)}
+            value={stepArray[stepArray.length-1]}
           />
-          <button>Add Another</button>
+          <button onClick={event => handleStepSubmit(event)}>Add A Step</button>
         </div>
 
         <div>
