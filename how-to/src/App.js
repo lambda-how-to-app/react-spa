@@ -14,7 +14,11 @@ import GuideList from "./components/GuideList";
 import PrivateRoute from "./components/PrivateRoute";
 import AddGuide from "./components/AddGuide";
 import Guide from "./components/Guide";
+<<<<<<< HEAD
 import SearchGuides from "./components/searchGuides"
+=======
+import DeleteGuide from "./components/DeleteGuide";
+>>>>>>> e410a26e7e554a88a727b6daae4f0509dcc8ed57
 
 import Form from "./components/Form.js";
 
@@ -24,37 +28,8 @@ const App = ({ user, isLoggedIn }) => {
     <div>
       <Container> 
         <NavBar />
-        <Switch>
-          <Route exact path="/" render={props => <Welcome {...props} />} />
-          <Route
-            path="/login"
-            render={props =>
-              isLoggedIn ? (
-                <Redirect to={`/${userType}-dashboard`} />
-              ) : (
-                <Login {...props} />
-              )
-            }
-          />
-          <Route
-            path="/sign-up"
-            render={props =>
-              isLoggedIn ? (
-                <Redirect to="/user-dashboard" />
-              ) : (
-                <Signup {...props} />
-              )
-            }
-          />
-          {/* <Route path="/sign-up" render={props => <Signup {...props} />} /> */}
-          <Route path="/add-guide" component={AddGuide} />
-          <Route path="/edit" render={props => <Form {...props} />} />
-          <PrivateRoute
-            exact
-            path="/guide/:id"
-            render={props => <Guide {...props} />}
-          />
 
+<<<<<<< HEAD
           <PrivateRoute path="/user-dashboard" component={UserDashboard} />
           <PrivateRoute
             path="/creator-dashboard"
@@ -63,6 +38,38 @@ const App = ({ user, isLoggedIn }) => {
           <PrivateRoute path="/guides" component={GuideList} />
           <Route path="/searchguides" component={SearchGuides} />
         </Switch>
+=======
+        <Route exact path="/" render={props => <Welcome {...props} />} />
+        <Route
+          path="/login"
+          render={props =>
+            isLoggedIn ? (
+              <Redirect to={`/${userType}-dashboard`} />
+            ) : (
+              <Login {...props} />
+            )
+          }
+        />
+        <Route
+          path="/sign-up"
+          render={props =>
+            isLoggedIn ? (
+              <Redirect to="/user-dashboard" />
+            ) : (
+              <Signup {...props} />
+            )
+          }
+        />
+        {/* <Route path="/sign-up" render={props => <Signup {...props} />} /> */}
+        <Route path="/add-guide" component={AddGuide} />
+        <Route path="/edit" render={props => <Form {...props} />} />
+        <Route path="/guide/:id" render={props => <Guide {...props} />} />
+
+        <PrivateRoute path="/user-dashboard" component={UserDashboard} />
+        <PrivateRoute path="/creator-dashboard" component={CreatorDashboard} />
+        <PrivateRoute path="/guides" component={GuideList} />
+
+>>>>>>> e410a26e7e554a88a727b6daae4f0509dcc8ed57
         {/* <Login /> */}
         {/* <Signup />
         <UsersList /> */}
