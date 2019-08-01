@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Header, Card, Image, Pagination } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import GuideCard from "./GuideCard";
+import { getGuides, getUsers } from "../store/actions";
+import decode from "jwt-decode";
 
 import choco from "../chocomilk.jpg";
 import "./MyGuides.css";
 
 const GuideContainer = styled.div`
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const LineDiv = styled.div`
@@ -22,52 +27,62 @@ const LineDiv = styled.div`
 
 // to edit with user's guide id
 const handleClick = () => {
-    console.log("guide clicked!");
-
+  console.log("guide clicked!");
 };
 
-function MyGuides() {
-    return (
-        <div>
-            <GuideContainer>
-                <Header as="h1">MY GUIDES</Header>
-                <LineDiv>{/*grey line under the user card */}</LineDiv>
-
-                {/* input sort/filter functionality here */}
-                <p className-="sortTag">Sort/Filter</p>
-
-                <Card.Group onClick={handleClick}> {/* add onClick funct here to link to individual user guide page */}
-                    <Image src={choco} avatar />
-                    <Card>
-                        <Card.Content>
-                            <Card.Header>Make Chocolate Milk</Card.Header>
-                            <Card.Description>short description about this guide here!!!</Card.Description>
-                        </Card.Content>
-                    </Card>
-                </Card.Group> 
-
-                <Card.Group onClick={handleClick}>
-                    <Image src={choco} avatar />
-                    <Card>
-                        <Card.Content>
-                            <Card.Header>Make Chocolate Milk</Card.Header>
-                            <Card.Description>short description about this guide here!!!</Card.Description>
-                        </Card.Content>
-                    </Card>
-                </Card.Group>
-
-                <Pagination
-                    boundaryRange={0}
-                    defaultActivePage={1}
-                    ellipsisItem={null}
-                    firstItem={null}
-                    lastItem={null}
-                    siblingRange={1}
-                    // totalPages={10}
-                />
-            </GuideContainer>
-        </div>
-    );
+let userId;
+if (localStorage.token) {
+  userId = decode(localStorage.getItem("token")).userId;
 }
 
-export default MyGuides;
+function MyGuides({ guides, users, getGuides, getUsers }) {
+  useEffect(() => {
+    getGuides();
+    getUsers();
+  }, [getGuides, getUsers]);
+  return (
+    <div>
+      <GuideContainer>
+        <Header as="h1">MY GUIDES</Header>
+        <LineDiv>{/*grey line under the user card */}</LineDiv>
+
+        {/* input sort/filter functionality here */}
+        <p className-="sortTag">Sort/Filter</p>
+        {guides && userId
+          ? guides
+              .sort((a, b) => {
+                return new Date(b.created_at) - new Date(a.created_at);
+              })
+              .filter(guide => guide.guide_auth_id === userId)
+              .map((guide, index) => (
+                <Link key={index} to={`/guide/${guide.id}`}>
+                  <GuideCard key={index} users={users} guide={guide} />
+                </Link>
+              ))
+          : null}
+
+        <Pagination
+          boundaryRange={0}
+          defaultActivePage={1}
+          ellipsisItem={null}
+          firstItem={null}
+          lastItem={null}
+          siblingRange={1}
+          // totalPages={10}
+        />
+      </GuideContainer>
+    </div>
+  );
+}
+
+const mapStateToProps = state => {
+  return {
+    guides: state.guides,
+    users: state.users
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getGuides, getUsers }
+)(MyGuides);

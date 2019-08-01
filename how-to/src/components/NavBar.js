@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { logout } from "../store/actions";
+import SignOut from "./Signout";
 
 const NavBar = props => {
   const [menuState, setMenuState] = useState({});
@@ -54,16 +55,15 @@ const NavBar = props => {
             position="right"
           />
           <Menu.Item
-            as={NavLink}
-            to="/sign-up"
             name="logout"
             active={activeItem === "logout"}
-            content="Log Out"
-            onClick={(e, name) => {
+            /* onClick={(e, name) => {
               handleItemClick(e, name);
               props.logout();
-            }}
-          />
+            }} */
+          >
+            <SignOut logout={props.logout} />
+          </Menu.Item>
         </>
       )}
     </Menu>
