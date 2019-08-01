@@ -14,6 +14,7 @@ import GuideList from "./components/GuideList";
 import PrivateRoute from "./components/PrivateRoute";
 import AddGuide from "./components/AddGuide";
 import Guide from "./components/Guide";
+import DeleteGuide from "./components/DeleteGuide";
 
 import Form from "./components/Form.js";
 

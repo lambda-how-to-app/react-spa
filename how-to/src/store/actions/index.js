@@ -62,6 +62,11 @@ export const signUp = credentials => dispatch => {
   return axiosWithAuth()
     .post("/api/v1/auth/signup", credentials)
     .then(res => {
+      if (res.data.body.guide) {
+        localStorage.setItem("userType", "creator");
+      } else {
+        localStorage.setItem("userType", "user");
+      }
       console.log(res);
       localStorage.setItem("token", res.data.body.token);
 
@@ -103,6 +108,23 @@ export const getGuideById = id => dispatch => {
     .then(res => {
       console.log(res);
       dispatch({ type: FETCHING_ITEM_BY_ID_SUCCESS, payload: res.data.body });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const DELETE_GUIDE_START = "DELETE_GUIDE_START";
+export const DELETE_GUIDE_SUCCESS = "DELETE_GUIDE_SUCCESS";
+export const DELETE_GUIDE_FAILURE = "DELETE_GUIDE_FAILURE";
+
+export const deleteGuide = id => dispatch => {
+  dispatch({ type: DELETE_GUIDE_START });
+  return axiosWithAuth()
+    .delete(`/api/v1/lifehack/${id}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: DELETE_GUIDE_SUCCESS, payload: res.data.body });
     })
     .catch(err => {
       console.log(err);
