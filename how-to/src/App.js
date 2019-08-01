@@ -47,7 +47,7 @@ const App = ({ user, isLoggedIn }) => {
           }
         />
         {/* <Route path="/sign-up" render={props => <Signup {...props} />} /> */}
-        <Route path="/add-guide" component={AddGuide} />
+        <Route path="/add-guide/delete" component={AddGuide} />
         <Route path="/edit" render={props => <Form {...props} />} />
         <Route path="/guide/:id" render={props => <Guide {...props} />} />
         <Route path="/add-guide/delete" component={DeleteGuide} />

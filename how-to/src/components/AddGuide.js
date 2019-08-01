@@ -7,16 +7,41 @@ import AddIngredients from "./AddIngredients.js";
 
 const AddGuide = () => {
 
-  const [fieldValues, setFieldValues] = useState("");
-  const [guide, setGuide] = useState([{}]);
+  const [fieldValues, setFieldValues] = useState({title:"", ingredients:[], steps:''});
+  const [guide, setGuide] = useState({title:"", ingredients:[], steps:''});
+  const [ingredientsArray, setIngredients] = useState([]);
+
+   const handleIngredientChange = event => {
+    setIngredients([...ingredientsArray, event.target.value])
+    console.log(ingredientsArray)
+   };
+
+  const handleIngredientSubmit = event => {
+  event.preventDefault();
+  let newArray = guide.ingredients;
+  console.log('new array 1', newArray);
+
+  newArray.push(ingredientsArray[ingredientsArray.length-1]);
+  console.log('new array 2', newArray);
+  
+  setGuide([guide.ingredients, ...newArray]);
+
+  console.log("guide", guide.ingredients);
+
+  setIngredients(['']);
+
+ };
+
 
   const handleChange = event => {
-    setFieldValues({...fieldValues}, {[event.target.name]:event.target.value});
+    setFieldValues({...fieldValues, [event.target.name]:event.target.value});
+    console.log(fieldValues);
   };
 
   const newHandleChange = event => {
     event.preventDefault();
-    setGuide([...guide], {...fieldValues})
+    console.log(guide);
+    setGuide({...guide, ...fieldValues})
   };
 
   const handleSave = event => {
@@ -50,8 +75,10 @@ const AddGuide = () => {
           <Input
             placeholder="enter what is needed..."
             name="ingredients"
-            onChange={event => handleChange(event)}
+            onChange={event => handleIngredientChange(event)}
+            value={ingredientsArray[ingredientsArray.length-1]}
           />
+          <button onClick={event => handleIngredientSubmit(event)}>submit ingredient</button>
           {/* </form> */}
         </div>
 
@@ -73,7 +100,6 @@ const AddGuide = () => {
           </button>
           <p>|</p>
           <Link to="/add-guide/delete">
-            <p>Delete</p>
           </Link>
         </div>
       </form>
@@ -99,10 +125,7 @@ export default AddGuide;
 // };
 
 
-// const handleIngredientSubmit = event => {
-//   event.preventDefault();
-//   setIngredients([...ingredients], event.target.value);
-// };
+
 
 // const handleStepSubmit = event => {
 //   event.preventDefault();
