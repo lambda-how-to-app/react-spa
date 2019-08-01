@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Header } from "semantic-ui-react";
 import { getGuideById } from "../store/actions";
@@ -10,6 +10,19 @@ import choco from "../chocomilk.jpg";
 
 function Guide(props) {
   console.log(props);
+
+  useEffect(
+    () => {
+      const {
+        match: { params }
+      } = props;
+
+      props.getGuideById(params.id);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
   const [guide, setGuide] = useState({
     id: 0,
     name: "Make Chocolate Milk",
@@ -18,8 +31,6 @@ function Guide(props) {
     ingredients: ["milk", "chocolate syrup", "spoon", "cup"],
     steps: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
   });
-
-  console.log(guide);
 
   const editGuide = editedGuide => {
     const guideCopy = [...guide];
@@ -33,7 +44,10 @@ function Guide(props) {
   return (
     <div>
       <Header as="h1">How-To</Header>
-      <Card guide={guide} />
+      <Link to="/guides">
+        <h4>Back to Guides</h4>
+      </Link>
+      <Card guide={props.guide} />
       <Route
         path="/edit/:name"
         render={props => {
@@ -80,7 +94,14 @@ function Guide(props) {
   //   }
   // };
 }
+
+const mapStateToProps = state => {
+  return {
+    guide: state.guideById
+  };
+};
+
 export default connect(
-  null,
-  {}
+  mapStateToProps,
+  { getGuideById }
 )(Guide);
