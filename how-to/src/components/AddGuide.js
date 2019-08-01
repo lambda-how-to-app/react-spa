@@ -7,27 +7,35 @@ import AddIngredients from "./AddIngredients.js";
 
 const AddGuide = () => {
 
-  const [fieldValues, setFieldValues] = useState({title:"", ingredients:[], steps:''});
-  const [guide, setGuide] = useState({title:"", ingredients:[], steps:''});
+  const [fieldValues, setFieldValues] = useState({title:"", ingredients:[], steps:[]});
+  const [guide, setGuide] = useState({title:"", ingredients:[], steps:[]});
+  
   const [ingredientsArray, setIngredients] = useState([]);
+  const [stepArray, setStep] = useState([]);
 
    const handleIngredientChange = event => {
     setIngredients([...ingredientsArray, event.target.value])
-    console.log(ingredientsArray)
+    console.log('ingredient', ingredientsArray)
+   };
+   const handleStepChange = event => {
+    setStep([...stepArray, event.target.value])
+    console.log('step', stepArray)
    };
 
+   const handleStepSubmit = event => {
+    let newArray = fieldValues.steps;
+    newArray.push(stepArray[stepArray.length-1]);
+    setGuide([fieldValues.steps, ...newArray]);
+    console.log('stepvalues', fieldValues.steps);
+    setIngredients(['']);
+   }
   const handleIngredientSubmit = event => {
   event.preventDefault();
   let newArray = fieldValues.ingredients;
-  console.log('new array 1', newArray);
-
   newArray.push(ingredientsArray[ingredientsArray.length-1]);
-  console.log('new array 2', newArray);
-  
   setGuide([fieldValues.ingredients, ...newArray]);
 
   console.log("fieldValues", fieldValues.ingredients);
-
   setIngredients(['']);
 
  };
@@ -90,9 +98,9 @@ const AddGuide = () => {
           <Input
             placeholder="enter steps..."
             name="steps"
-            onChange={event => handleChange(event)}
+            onChange={event => handleStepChange(event)}
           />
-          <button>Add Another</button>
+          <button onClick={event => handleStepSubmit(event)}>Add Another</button>
         </div>
 
         <div>
