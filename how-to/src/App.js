@@ -13,11 +13,8 @@ import CreatorDashboard from "./components/CreatorDashboard";
 import GuideList from "./components/GuideList";
 import PrivateRoute from "./components/PrivateRoute";
 import AddGuide from "./components/AddGuide";
-<<<<<<< HEAD
-=======
 import Guide from "./components/Guide";
 
->>>>>>> beb864f4e1a4e9063898422ce2e9a05b74a244bd
 import Form from "./components/Form.js";
 
 const App = ({ user, isLoggedIn }) => {
@@ -26,27 +23,6 @@ const App = ({ user, isLoggedIn }) => {
     <div>
       <Container> 
         <NavBar />
-<<<<<<< HEAD
-        <NavBar /> 
-        <Route exact path="/" render={props => <Welcome {...props} />} />
-        <Route
-          path="/login"
-          render={props =>
-            localStorage.getItem("token") ? (
-              <Redirect to="/user-dashboard" />
-            ) : (
-              <Login {...props} />
-            )
-          }
-        />
-        <Route path="/sign-up" render={props => <Signup {...props} />} />
-        <PrivateRoute path="/user-dashboard" component={UserDashboard} />
-        <PrivateRoute path="/creator-dashboard" component={CreatorDashboard} />
-        <PrivateRoute path="/guides" component={GuideList} />
-        <Route path= '/add-guide' component={AddGuide} />
-        
-        <Route path="/edit" render={props => <Form {...props} />} />
-=======
         <Switch>
           <Route exact path="/" render={props => <Welcome {...props} />} />
           <Route
@@ -77,7 +53,6 @@ const App = ({ user, isLoggedIn }) => {
             path="/guide/:id"
             render={props => <Guide {...props} />}
           />
->>>>>>> beb864f4e1a4e9063898422ce2e9a05b74a244bd
 
           <PrivateRoute path="/user-dashboard" component={UserDashboard} />
           <PrivateRoute
