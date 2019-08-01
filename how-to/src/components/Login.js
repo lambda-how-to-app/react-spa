@@ -25,8 +25,8 @@ const Login = (props, { isSubmitting }) => {
       <Formik
         validationSchema={LoginSchema}
         initialValues={{
-          email: "",
-          password: ""
+          email: "bey@gmail.com",
+          password: "123456789"
         }}
         onSubmit={(values, actions) => {
           console.log(actions);

@@ -102,7 +102,7 @@ export const getGuideById = id => dispatch => {
     .get(`/api/v1/lifehack/${id}`)
     .then(res => {
       console.log(res);
-      dispatch({ type: FETCHING_ITEM_BY_ID_SUCCESS, payload: res.data });
+      dispatch({ type: FETCHING_ITEM_BY_ID_SUCCESS, payload: res.data.body });
     })
     .catch(err => {
       console.log(err);
