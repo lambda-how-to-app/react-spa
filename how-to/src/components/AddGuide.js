@@ -27,7 +27,7 @@ const AddGuide = () => {
     newArray.push(stepArray[stepArray.length-1]);
     setGuide([fieldValues.steps, ...newArray]);
     console.log('stepvalues', fieldValues.steps);
-    setIngredients(['']);
+    setStep(['']);
    }
   const handleIngredientSubmit = event => {
   event.preventDefault();
@@ -39,7 +39,6 @@ const AddGuide = () => {
   setIngredients(['']);
 
  };
-
 
   const handleChange = event => {
     setFieldValues({...fieldValues, [event.target.name]:event.target.value});
@@ -99,6 +98,7 @@ const AddGuide = () => {
             placeholder="enter steps..."
             name="steps"
             onChange={event => handleStepChange(event)}
+            value={stepArray[stepArray.length-1]}
           />
           <button onClick={event => handleStepSubmit(event)}>Add Another</button>
         </div>
