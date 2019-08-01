@@ -7,9 +7,14 @@ import GuideCard from "./GuideCard";
 import UserCard from "./UserCard";
 
 const GuideList = ({ getGuides, getUsers, guides, users }) => {
-  useEffect(() => {
-    getGuides();
-  }, [getGuides]);
+  useEffect(
+    () => {
+      getGuides();
+      getUsers();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   return (
     <div className="guide-list-container">
@@ -22,18 +27,15 @@ const GuideList = ({ getGuides, getUsers, guides, users }) => {
             })
             .map(guide => (
               <Link to={`/guide/${guide.id}`}>
-                <GuideCard guide={guide} />
+                <GuideCard users={users} guide={guide} />
               </Link>
             ))
         : null}
-
-      {users ? users.map(user => <UserCard user={user} />) : null}
     </div>
   );
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     guides: state.guides,
     users: state.users

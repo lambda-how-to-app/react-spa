@@ -17,19 +17,35 @@ import {
   FETCHING_ITEM_BY_ID_FAILURE,
   DELETE_GUIDE_START,
   DELETE_GUIDE_SUCCESS,
-  DELETE_GUIDE_FAILURE
+  DELETE_GUIDE_FAILURE,
+  ADD_GUIDE_START,
+  ADD_GUIDE_SUCCESS,
+  ADD_GUIDE_FAILURE,
+  UPDATE_GUIDE_START,
+  UPDATE_GUIDE_SUCCESS,
+  UPDATE_GUIDE_FAILURE,
+  ADD_STEP_START,
+  ADD_STEP_SUCCESS,
+  ADD_STEP_FAILURE,
+  GET_STEP_START,
+  GET_STEP_SUCCESS,
+  GET_STEP_FAILURE
 } from "../actions";
 
 const initialState = {
   user: null,
   users: null,
+  guide: null,
   guides: null,
   guideById: null,
   error: "",
   isLoading: false,
   isLoggingIn: false,
   isLoggedIn: false,
-  fetchingData: false
+  fetchingData: false,
+  deletingGuide: false,
+  addingGuide: false,
+  updatingGuide: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -78,7 +94,6 @@ export const reducer = (state = initialState, action) => {
         guides: null,
         error: "",
         isLoading: true,
-        isLoggingIn: false,
         fetchingData: true
       };
     case GET_GUIDES_SUCCESS:
@@ -87,7 +102,13 @@ export const reducer = (state = initialState, action) => {
         guides: action.payload,
         error: "",
         isLoading: false,
-        isLoggingIn: false,
+        fetchingData: false
+      };
+    case GET_GUIDES_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
         fetchingData: false
       };
     case SIGN_UP_START:
@@ -111,6 +132,14 @@ export const reducer = (state = initialState, action) => {
         isLoggingIn: false,
         fetchingData: false
       };
+    case SIGN_UP_FAILURE:
+      return {
+        ...state,
+        error: "Error signing up",
+        isLoading: false,
+        isLoggingIn: false,
+        fetchingData: false
+      };
     case GET_USERS_START:
       return {
         ...state,
@@ -125,6 +154,14 @@ export const reducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
         error: "",
+        isLoading: false,
+        isLoggingIn: false,
+        fetchingData: false
+      };
+    case GET_USERS_FAILURE:
+      return {
+        ...state,
+        error: "Error getting all users",
         isLoading: false,
         isLoggingIn: false,
         fetchingData: false
@@ -145,6 +182,114 @@ export const reducer = (state = initialState, action) => {
         isLoading: false,
         isLoggingIn: false,
         fetchingData: false
+      };
+    case FETCHING_ITEM_BY_ID_FAILURE:
+      return {
+        ...state,
+        error: "Error fetching item by ID",
+        isLoading: false,
+        isLoggingIn: false,
+        fetchingData: false
+      };
+    case DELETE_GUIDE_START:
+      return {
+        ...state,
+        error: "",
+        isLoading: true,
+        deletingGuide: true
+      };
+    case DELETE_GUIDE_SUCCESS:
+      return {
+        ...state,
+        error: "",
+        isLoading: false,
+        deletingGuide: false
+      };
+    case DELETE_GUIDE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
+        deletingGuide: false
+      };
+    case ADD_GUIDE_START:
+      return {
+        ...state,
+        error: "",
+        isLoading: true,
+        addingGuide: true
+      };
+    case ADD_GUIDE_SUCCESS:
+      return {
+        ...state,
+        guides: [...state.guides, action.payload],
+        error: "",
+        isLoading: true,
+        addingGuide: true
+      };
+    case ADD_GUIDE_FAILURE:
+      return {
+        ...state,
+        error: "Error adding guide",
+        isLoading: false,
+        addingGuide: false
+      };
+    case UPDATE_GUIDE_START:
+      return {
+        ...state,
+        error: "",
+        isLoading: true,
+        updatingGuide: true
+      };
+    case UPDATE_GUIDE_SUCCESS:
+      return {
+        ...state,
+        error: "",
+        isLoading: false,
+        updatingGuide: false
+      };
+    case UPDATE_GUIDE_FAILURE:
+      return {
+        ...state,
+        error: "Error updating guide",
+        isLoading: false,
+        updatingGuide: false
+      };
+    case ADD_STEP_START:
+      return {
+        ...state,
+        error: "",
+        isLoading: true
+      };
+    case ADD_STEP_SUCCESS:
+      return {
+        ...state,
+        error: "",
+        isLoading: false
+      };
+    case ADD_STEP_FAILURE:
+      return {
+        ...state,
+        error: "Error adding a step",
+        isLoading: false
+      };
+    case GET_STEP_START:
+      return {
+        ...state,
+        error: "",
+        isLoading: true
+      };
+    case GET_STEP_SUCCESS:
+      return {
+        ...state,
+        error: "",
+        isLoading: false
+      };
+    case GET_STEP_FAILURE:
+      return {
+        ...state,
+        error: "Error getting steps",
+        isLoading: false
       };
     default:
       return state;

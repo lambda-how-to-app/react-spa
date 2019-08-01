@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { axiosWithAuth } from "../utilities/axiosWithAuth";
@@ -138,7 +138,6 @@ const CreatorDashboard = props => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     user: state.user
   };

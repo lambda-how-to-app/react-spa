@@ -10,8 +10,6 @@ import Card from "./Card.js";
 import choco from "../chocomilk.jpg";
 
 function Guide(props) {
-  console.log(props);
-
   useEffect(
     () => {
       const {
@@ -57,7 +55,7 @@ function Guide(props) {
       </Link>
       <Card guide={props.guide} />
 
-      <DeleteGuide />
+      <DeleteGuide deleteGuide={deleteGuide} />
       <Route
         path="/edit/:name"
         render={props => {
@@ -71,43 +69,12 @@ function Guide(props) {
       />
     </div>
   );
-
-  // import GuideTitle from "./GuideTitle.js";
-  // import GuideImage from "./GuideImage.js";
-  // import GuideKeywords from "./GuideKeywords.js";
-  // import GuideIngredients from "./GuideIngredients.js";
-  // import GuideStepCard from "./GuideStepCard.js";
-  // import GuideMod from "./GuideMod.js";
-
-  // const Guide = ({ guide }) => {
-  //   console.log(guide);
-  //   if (guide) {
-  //     return (
-  //       <div className="guide-card">
-  //         <hr />
-  //         <Header as="h1">How-To</Header>
-  //         <GuideTitle title={guide.name} />
-  //         <GuideImage images={guide.images} />
-  //         <GuideKeywords keywords={guide.keywords} />
-  //         <GuideIngredients materials={guide.materials} />
-  //         {guide.instructions
-  //           ? guide.instructions.map((guide, index) => (
-  //               <GuideStepCard index={index} guide={guide} />
-  //             ))
-  //           : null}
-
-  //         <GuideMod />
-  //       </div>
-  //     );
-  //   } else {
-  //     return null;
-  //   }
-  // };
 }
 
 const mapStateToProps = state => {
   return {
-    guide: state.guideById
+    guide: state.guideById,
+    users: state.users
   };
 };
 
