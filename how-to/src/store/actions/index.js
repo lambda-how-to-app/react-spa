@@ -91,3 +91,20 @@ export const getUsers = () => dispatch => {
       console.log(err);
     });
 };
+
+export const FETCHING_ITEM_BY_ID_START = "FETCHING_ITEM_BY_ID_START";
+export const FETCHING_ITEM_BY_ID_SUCCESS = "FETCHING_ITEM_BY_ID_SUCCESS";
+export const FETCHING_ITEM_BY_ID_FAILURE = "FETCHING_ITEM_BY_ID_FAILURE";
+
+export const getGuideById = id => dispatch => {
+  dispatch({ type: FETCHING_ITEM_BY_ID_START });
+  return axiosWithAuth()
+    .get(`/api/v1/lifehack/${id}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: FETCHING_ITEM_BY_ID_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};

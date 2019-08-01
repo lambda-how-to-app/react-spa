@@ -33,7 +33,8 @@ const Login = (props, { isSubmitting }) => {
           console.log(values);
           props.login(values).then(res => {
             if (res) {
-              props.history.push("/creator-dashboard");
+              const userType = localStorage.getItem("userType");
+              props.history.push(`/${userType}-dashboard`);
               actions.resetForm("");
             }
           });

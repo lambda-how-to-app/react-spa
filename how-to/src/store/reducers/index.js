@@ -11,16 +11,21 @@ import {
   SIGN_UP_FAILURE,
   GET_USERS_START,
   GET_USERS_SUCCESS,
-  GET_USERS_FAILURE
+  GET_USERS_FAILURE,
+  FETCHING_ITEM_BY_ID_START,
+  FETCHING_ITEM_BY_ID_SUCCESS,
+  FETCHING_ITEM_BY_ID_FAILURE
 } from "../actions";
 
 const initialState = {
   user: null,
   users: null,
   guides: null,
+  guideById: null,
   error: "",
   isLoading: false,
   isLoggingIn: false,
+  isLoggedIn: false,
   fetchingData: false
 };
 
@@ -42,7 +47,8 @@ export const reducer = (state = initialState, action) => {
         error: "",
         isLoading: false,
         isLoggingIn: false,
-        fetchingData: false
+        fetchingData: false,
+        isLoggedIn: true
       };
     case LOGIN_FAILURE:
       return {
@@ -60,7 +66,8 @@ export const reducer = (state = initialState, action) => {
         error: "",
         isLoading: false,
         isLoggingIn: false,
-        fetchingData: false
+        fetchingData: false,
+        isLoggedIn: false
       };
     case GET_GUIDES_START:
       return {
@@ -114,6 +121,23 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload,
+        error: "",
+        isLoading: false,
+        isLoggingIn: false,
+        fetchingData: false
+      };
+    case FETCHING_ITEM_BY_ID_START:
+      return {
+        ...state,
+        error: "",
+        isLoading: false,
+        isLoggingIn: false,
+        fetchingData: false
+      };
+    case FETCHING_ITEM_BY_ID_SUCCESS:
+      return {
+        ...state,
+        guideById: action.payload,
         error: "",
         isLoading: false,
         isLoggingIn: false,
