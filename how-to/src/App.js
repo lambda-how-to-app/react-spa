@@ -20,7 +20,7 @@ const App = ({ user }) => {
     <div>
       <Container> 
         <NavBar />
-        <NavBar />
+        <NavBar /> 
         <Route exact path="/" render={props => <Welcome {...props} />} />
         <Route
           path="/login"

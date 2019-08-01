@@ -18,7 +18,7 @@ function LifeHacksLists(props) {
      console.log(lifeHack);
      return(
          <div> 
-             
+            
          </div>
      )
 } 
