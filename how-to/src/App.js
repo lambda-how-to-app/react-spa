@@ -11,12 +11,14 @@ import NavBar from "./components/NavBar";
 import UserDashboard from "./components/UserDashboard";
 import CreatorDashboard from "./components/CreatorDashboard";
 import PrivateRoute from "./components/PrivateRoute";
+import SearchGuides from './components/searchGuides'
 
 const App = () => {
   return (
     <div>
-      <Container>
-        <NavBar />
+      <Container> 
+        <NavBar />  
+        <SearchGuides />
         <Route exact path="/" render={props => <Welcome {...props} />} />
         <Route path="/login" render={props => <Login {...props} />} />
         <Route path="/sign-up" render={props => <Signup {...props} />} />
@@ -29,7 +31,7 @@ const App = () => {
         {/* <Welcome/> */}
       </Container>
     </div>
-  );
+  );   
 };
 
 const mapStateToProps = state => {
