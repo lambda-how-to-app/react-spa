@@ -15,6 +15,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import AddGuide from "./components/AddGuide";
 import Guide from "./components/Guide";
 import DeleteGuide from "./components/DeleteGuide";
+import MyGuides from "./components/MyGuides";
 
 import Form from "./components/Form.js";
 
@@ -46,19 +47,20 @@ const App = ({ user, isLoggedIn }) => {
             )
           }
         />
-        {/* <Route path="/sign-up" render={props => <Signup {...props} />} /> */}
+
+
+        <Route path="/add-guide" component={AddGuide} />
+
+         <Route path="/sign-up" render={props => <Signup {...props} />} /> 
         <Route path="/add-guide/delete" component={AddGuide} />
+
         <Route path="/edit" render={props => <Form {...props} />} />
         <Route path="/guide/:id" render={props => <Guide {...props} />} />
         <Route path="/add-guide/delete" component={DeleteGuide} />
         <PrivateRoute path="/user-dashboard" component={UserDashboard} />
         <PrivateRoute path="/creator-dashboard" component={CreatorDashboard} />
         <PrivateRoute path="/guides" component={GuideList} />
-
-        {/* <Login /> */}
-        {/* <Signup />
-        <UsersList /> */}
-        {/* <Welcome/> */}
+        <PrivateRoute path="/my-guides" component={MyGuides} />
       </Container>
     </div>
   );

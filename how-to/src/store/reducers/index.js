@@ -29,11 +29,15 @@ import {
   ADD_STEP_FAILURE,
   GET_STEP_START,
   GET_STEP_SUCCESS,
-  GET_STEP_FAILURE
+  GET_STEP_FAILURE,
+  GET_SINGLE_USER_START,
+  GET_SINGLE_USER_SUCCESS,
+  GET_SINGLE_USER_FAILURE
 } from "../actions";
 
 const initialState = {
   user: null,
+  currentUser: null,
   users: null,
   guide: null,
   guides: null,
@@ -62,7 +66,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         guides: null,
-        user: action.payload,
+        currentUser: action.payload,
         error: "",
         isLoading: false,
         isLoggingIn: false,
@@ -82,6 +86,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         guides: null,
         user: null,
+        currentUser: null,
         error: "",
         isLoading: false,
         isLoggingIn: false,
@@ -125,7 +130,7 @@ export const reducer = (state = initialState, action) => {
     case SIGN_UP_SUCCESS:
       return {
         ...state,
-        user: action.payload,
+        currentUser: action.payload,
         guides: null,
         error: "",
         isLoading: false,
@@ -290,6 +295,29 @@ export const reducer = (state = initialState, action) => {
         ...state,
         error: "Error getting steps",
         isLoading: false
+      };
+    case GET_SINGLE_USER_START:
+      return {
+        ...state,
+        user: null,
+        error: "",
+        isLoading: true,
+        fetchingData: true
+      };
+    case GET_SINGLE_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload[0],
+        error: "",
+        isLoading: false,
+        fetchingData: false
+      };
+    case GET_SINGLE_USER_FAILURE:
+      return {
+        ...state,
+        error: "Error getting single user",
+        isLoading: false,
+        fetchingData: false
       };
     default:
       return state;

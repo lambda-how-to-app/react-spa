@@ -194,3 +194,20 @@ export const getStep = id => dispatch => {
       dispatch({ type: GET_STEP_FAILURE });
     });
 };
+
+export const GET_SINGLE_USER_START = "GET_SINGLE_USER_START";
+export const GET_SINGLE_USER_SUCCESS = "GET_SINGLE_USER_SUCCESS";
+export const GET_SINGLE_USER_FAILURE = "GET_SINGLE_USER_FAILURE";
+
+export const getSingleUser = id => dispatch => {
+  dispatch({ type: GET_SINGLE_USER_START });
+  return axiosWithAuth()
+    .get(`/api/v1/users/${id}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: res.data.body });
+    })
+    .catch(err => {
+      dispatch({ type: GET_SINGLE_USER_FAILURE });
+    });
+};
