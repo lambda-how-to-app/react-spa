@@ -10,20 +10,25 @@ import Welcome from "./components/Welcome";
 import NavBar from "./components/NavBar";
 import UserDashboard from "./components/UserDashboard";
 import CreatorDashboard from "./components/CreatorDashboard";
+import GuideList from "./components/GuideList";
 import PrivateRoute from "./components/PrivateRoute";
-import SearchGuides from './components/searchGuides'
+import AddGuide from "./components/AddGuide";
+import SignUpForm from "./components/forms/SignUpForm";
 
 const App = () => {
   return (
     <div>
       <Container> 
-        <NavBar />  
-        <SearchGuides />
+        <NavBar />
+        <NavBar />
+        {/* <SignUpForm /> */}
         <Route exact path="/" render={props => <Welcome {...props} />} />
         <Route path="/login" render={props => <Login {...props} />} />
         <Route path="/sign-up" render={props => <Signup {...props} />} />
         <PrivateRoute path="/user-dashboard" component={UserDashboard} />
         <PrivateRoute path="/creator-dashboard" component={CreatorDashboard} />
+        <PrivateRoute path="/guides" component={GuideList} />
+        <Route path= '/add-guide' component={AddGuide} />
 
         {/* <Login /> */}
         {/* <Signup />
