@@ -4,10 +4,7 @@ import "../../src/index.css";
 import { Link } from "react-router-dom";
 
 // testing use: remove imports later
-// import Guide from "./Guide.js";
-// import Signout from "./Signout.js";
-// import DeleteGuide from "./DeleteGuide.js";
-
+import Guide from "./Guide.js";
 
 function Welcome() {
   return (

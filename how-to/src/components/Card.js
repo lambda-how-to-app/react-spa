@@ -1,12 +1,12 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import GuideTitle from './GuideTitle.js';
 import GuideImage from './GuideImage.js';
 import GuideKeywords from './GuideKeywords.js';
 import GuideIngredients from "./GuideIngredients.js";
 import GuideStepCard from "./GuideStepCard.js";
-import GuideMod from './GuideMod.js';
+// import GuideMod from './GuideMod.js';
 
 import "./Card.css";
 
@@ -21,7 +21,10 @@ const Card = (props) => {
             <GuideKeywords keywords={guide.keyword.map(word => word + " ")} />
             <GuideIngredients ingredients={guide.ingredients} />
             <GuideStepCard steps={guide.steps} />
-            <GuideMod />
+            {/* <GuideMod /> */}
+            <Link to={`/edit/${guide.name}`}>Edit</Link>
+            {/* { " | "} */}
+            {/* <Link to={`/share`}>Share</Link> */}
         </div>
     );
 };

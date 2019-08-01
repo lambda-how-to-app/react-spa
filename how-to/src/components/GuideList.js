@@ -6,14 +6,21 @@ import { getGuides, getUsers } from "../store/actions";
 import GuideCard from "./GuideCard";
 import UserCard from "./UserCard";
 
-const GuideList = props => {
+const GuideList = ({ getGuides, getUsers, guides, users }) => {
+  useEffect(() => {
+    getGuides();
+  }, [getGuides]);
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
+
   return (
     <div className="guide-list-container">
       <h3>Browse All Guides</h3>
-      <button onClick={props.getGuides}>Get All Guides</button>
-      <button onClick={props.getUsers}>Get All Users</button>
-      {props.guides
-        ? props.guides
+      {/* <button onClick={props.getGuides}>Get All Guides</button> */}
+      <button onClick={() => getUsers()}>Get All Users</button>
+      {guides
+        ? guides
             .sort((a, b) => {
               return new Date(b.created_at) - new Date(a.created_at);
             })
@@ -24,7 +31,7 @@ const GuideList = props => {
             ))
         : null}
 
-      {props.users ? props.users.map(user => <UserCard user={user} />) : null}
+      {users ? users.map(user => <UserCard user={user} />) : null}
     </div>
   );
 };

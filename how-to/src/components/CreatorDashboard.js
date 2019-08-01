@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { axiosWithAuth } from "../utilities/axiosWithAuth";
+import { connect } from "react-redux";
 
 import UsersList from "./UsersList";
 
@@ -76,7 +78,6 @@ const CardP = styled.p`
 const CreatorDashboard = props => {
   return (
     <BodyWrap>
-      <UsersList />
       <Span>
         {" "}
         {/*user card */}
@@ -107,7 +108,7 @@ const CreatorDashboard = props => {
             <CardP>My Guides</CardP>
           </Card>
         </Link>
-        <Link to="/AddGuide">
+        <Link to="/add-guide">
           <Card>
             {/*box link thing*/}
             <CardP>Add Guide</CardP>
@@ -136,4 +137,14 @@ const CreatorDashboard = props => {
   );
 };
 
-export default CreatorDashboard;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    user: state.user
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(CreatorDashboard);
