@@ -68,16 +68,15 @@ const AddGuide = () => {
         <label> Title:
           <Input
             type="text"
-            placeholder="Add Guide Title"
+            placeholder="Add Guide Title..."
             name="title"
             onChange={event => handleChange(event)}
           />
         </label>
 
         <div>
-          <h1>What's Needed:</h1>
+          <h2>What's Needed:</h2>
           <AddIngredients fieldValues={fieldValues} />
-
           {/* <form onSubmit={event => handleIngredientSubmit(event)}> */}
 
           <Input
@@ -86,7 +85,7 @@ const AddGuide = () => {
             onChange={event => handleIngredientChange(event)}
             value={ingredientsArray[ingredientsArray.length-1]}
           />
-          <button onClick={event => handleIngredientSubmit(event)}>submit ingredient</button>
+          <button onClick={event => handleIngredientSubmit(event)}>Add An Ingredient</button>
           {/* </form> */}
         </div>
 
@@ -100,7 +99,7 @@ const AddGuide = () => {
             onChange={event => handleStepChange(event)}
             value={stepArray[stepArray.length-1]}
           />
-          <button onClick={event => handleStepSubmit(event)}>Add Another</button>
+          <button onClick={event => handleStepSubmit(event)}>Add A Step</button>
         </div>
 
         <div>

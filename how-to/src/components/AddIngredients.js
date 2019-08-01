@@ -1,18 +1,14 @@
-import React, {useEffect} from "react";
+import React from "react";
 
 const AddIngredients = (props) => {
-   const {guide} = props;
-
-   useEffect(()=>{
-       console.log('props changed')
-   },[guide]);
+   const {fieldValues} = props;
    
     return (
-            <div>
+           <>
                <ul>
-                   {guide && guide.ingredients.map(ingredient => <li key={"key_ingredient_"+guide.ingredients.indexOf(ingredient)}>{ingredient}</li>)}
+                   {fieldValues && fieldValues.ingredients.map(ingredient => <li key={"key_ingredient_"+fieldValues.ingredients.indexOf(ingredient)}>{ingredient}</li>)}
                </ul>
-           </div>        
+            </>   
         )}
         
 
