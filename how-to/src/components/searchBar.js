@@ -13,7 +13,7 @@ function SearchBar(props) {
     props.onSubmit(state.term)
   };
 
-  return (
+return (
       <Form style={{height:"100px"}} key="tiny" onSubmit={onInputSubmit}>
           <Form.Input type="text" onChange={onInputChange} />
           <Button type="submit">Search</Button>
