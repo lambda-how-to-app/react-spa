@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Input, Header, Modal, Form, Button } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import AddNewStep from "./AddNewStep";
@@ -80,13 +81,14 @@ const AddGuide = () => {
       <form onSubmit={event => handleTitleSubmit(event)}>
         <Input
           placeholder="Add Guide Title"
+          name="title"
           onChange={event => handleChange(event)}
           value={title}
         />
       </form>
 
       <AddGuideImages />
-      <button onClick={AddImageModal()}>add images</button>
+      <button onClick={() => AddImageModal()}>add images</button>
 
       <div>
         <form onSubmit={event => handleKeywordSubmit(event)}>
@@ -125,9 +127,9 @@ const AddGuide = () => {
           <p>Save</p>
         </button>
         <p>|</p>
-        <link>
+        <Link>
           <p>Delete</p>
-        </link>
+        </Link>
       </div>
     </>
   );
