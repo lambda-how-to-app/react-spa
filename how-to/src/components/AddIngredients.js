@@ -7,7 +7,7 @@ const AddIngredients = (props) => {
         <>
              <div>
                 <ul>
-                    {props.ingredients && props.ingredients.map(ingredient => <li key={"key_ingredient_"+props.ingredients.indexOf(ingredient)}>{ingredient}</li>)}
+                    {props.guide.ingredients && props.guide.ingredients.map(ingredient => <li key={"key_ingredient_"+props.ingredients.indexOf(ingredient)}>{ingredient}</li>)}
                 </ul>
             </div>
         </>
