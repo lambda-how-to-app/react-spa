@@ -14,6 +14,7 @@ import GuideList from "./components/GuideList";
 import PrivateRoute from "./components/PrivateRoute";
 import AddGuide from "./components/AddGuide";
 import Guide from "./components/Guide";
+import SearchGuides from "./components/searchGuides"
 
 import Form from "./components/Form.js";
 
@@ -60,6 +61,7 @@ const App = ({ user, isLoggedIn }) => {
             component={CreatorDashboard}
           />
           <PrivateRoute path="/guides" component={GuideList} />
+          <Route path="/searchguides" component={SearchGuides} />
         </Switch>
         {/* <Login /> */}
         {/* <Signup />

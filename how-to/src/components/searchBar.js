@@ -1,29 +1,23 @@
-import  React , {useState} from 'react';
+import React, { useState } from "react";
+import {Form, Button}  from "semantic-ui-react"
 
-function SearchBar()
-{    
-    const[state , setState] = useState({term:''});
+function SearchBar(props) {
+  const [state, setState] = useState({ term: "" });
 
- const onInputChange = (event) =>
-    {
-        console.log(setState({term: event.target.value}));
-    }  
-     
-    const onInputSubmit = (event) => {
-        event.preventDefault(); 
-          console.log(state);
-    }
+  const onInputChange = event => {
+    console.log(setState({ term: event.target.value }));
+  };
+
+  const onInputSubmit = event => {
+    event.preventDefault();
+    props.onSubmit(state.term)
+  };
 
   return (
-      <div className = 'ui segment'>
-          <form onSubmit = {onInputSubmit} className = "ui form"> 
-          <div className = 'field'>
-          <label></label> 
-          <input type ='text' onChange ={onInputChange} />
-          <button>SEARCHNOW</button>
-            </div>
-       </form>
-      </div> 
-  )
-} 
+      <Form style={{height:"100px"}} key="tiny" onSubmit={onInputSubmit}>
+          <Form.Input type="text" onChange={onInputChange} />
+          <Button type="submit">Search</Button>
+      </Form>
+  );
+}
 export default SearchBar;
