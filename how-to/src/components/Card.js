@@ -6,6 +6,7 @@ import GuideImage from "./GuideImage.js";
 import GuideKeywords from "./GuideKeywords.js";
 import GuideIngredients from "./GuideIngredients.js";
 import GuideStepCard from "./GuideStepCard.js";
+import DeleteGuide from "./DeleteGuide";
 // import GuideMod from './GuideMod.js';
 
 import "./Card.css";
@@ -24,6 +25,7 @@ const Card = ({ guide }) => {
       {/* <GuideStepCard steps={guide.steps} /> */}
       {/* <GuideMod /> */}
       <Link to={`/edit/${guide.name}`}>Edit</Link>
+
       {/* { " | "} */}
       {/* <Link to={`/share`}>Share</Link> */}
     </div>

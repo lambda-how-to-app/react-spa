@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Header } from "semantic-ui-react";
-import { getGuideById } from "../store/actions";
+import { getGuideById, deleteGuide } from "../store/actions";
+import DeleteGuide from "./DeleteGuide";
 
 import Form from "./Form.js";
 import Card from "./Card.js";
@@ -41,13 +42,22 @@ function Guide(props) {
     setGuide(guideCopy);
   };
 
+  const deleteGuide = () => {
+    const {
+      match: { params }
+    } = props;
+    props.deleteGuide(params.id);
+  };
+
   return (
     <div>
       <Header as="h1">How-To</Header>
       <Link to="/guides">
-        <h4>Back to Guides</h4>
+        <h4>&larr;Back to Guides</h4>
       </Link>
       <Card guide={props.guide} />
+
+      <DeleteGuide />
       <Route
         path="/edit/:name"
         render={props => {
@@ -103,5 +113,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getGuideById }
+  { getGuideById, deleteGuide }
 )(Guide);
