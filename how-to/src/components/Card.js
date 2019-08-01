@@ -14,7 +14,6 @@ import "./Card.css";
 // { name: "", img: "", keyword: [], ingredients: [], steps: [] };
 
 const Card = ({ guide }) => {
-  console.log(guide);
   //   const { guide } = props; // destructuring
   return guide ? (
     <div className="cardContainer">

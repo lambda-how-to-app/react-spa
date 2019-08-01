@@ -29,8 +29,6 @@ const Login = (props, { isSubmitting }) => {
           password: "123456789"
         }}
         onSubmit={(values, actions) => {
-          console.log(actions);
-          console.log(values);
           props.login(values).then(res => {
             if (res) {
               const userType = localStorage.getItem("userType");
@@ -105,7 +103,6 @@ const Login = (props, { isSubmitting }) => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     user: state.user,
     users: state.users,

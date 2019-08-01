@@ -46,7 +46,7 @@ const NavBar = props => {
         <>
           <Menu.Item
             as={NavLink}
-            to="/creator-dashboard"
+            to={`/${localStorage.getItem("userType")}-dashboard`}
             name="dashboard"
             active={activeItem === "dashboard"}
             content="My Dashboard"
@@ -72,7 +72,8 @@ const NavBar = props => {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    userType: state.userType
   };
 };
 

@@ -48,9 +48,7 @@ const Signup = (props, { isSubmitting }) => {
           /* confirmpassword: "" */
         }}
         onSubmit={(values, actions) => {
-          console.log(values);
           props.signUp(values).then(res => {
-            console.log(res);
             if (res) {
               const userType = localStorage.getItem("userType");
               props.history.push(`/${userType}-dashboard`);
@@ -185,7 +183,6 @@ const Signup = (props, { isSubmitting }) => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     user: state.user
   };
