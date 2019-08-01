@@ -10,22 +10,18 @@ const GuideList = ({ getGuides, getUsers, guides, users }) => {
   useEffect(() => {
     getGuides();
   }, [getGuides]);
-  useEffect(() => {
-    getUsers();
-  }, [getUsers]);
 
   return (
     <div className="guide-list-container">
       <h3>Browse All Guides</h3>
-      {/* <button onClick={props.getGuides}>Get All Guides</button> */}
-      <button onClick={() => getUsers()}>Get All Users</button>
+
       {guides
         ? guides
             .sort((a, b) => {
               return new Date(b.created_at) - new Date(a.created_at);
             })
             .map(guide => (
-              <Link to={`/${guide.id}`}>
+              <Link to={`/guide/${guide.id}`}>
                 <GuideCard guide={guide} />
               </Link>
             ))

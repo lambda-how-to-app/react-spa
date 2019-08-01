@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
+import { connect } from "react-redux";
 import { Header } from "semantic-ui-react";
+import { getGuideById } from "../store/actions";
 
-import Form from './Form.js';
+import Form from "./Form.js";
 import Card from "./Card.js";
 import choco from "../chocomilk.jpg";
 
-export default function Guide() {
+function Guide(props) {
+  console.log(props);
   const [guide, setGuide] = useState({
     id: 0,
     name: "Make Chocolate Milk",
@@ -31,14 +34,17 @@ export default function Guide() {
     <div>
       <Header as="h1">How-To</Header>
       <Card guide={guide} />
-      <Route path="/edit/:name"
+      <Route
+        path="/edit/:name"
         render={props => {
-          const guides = guide.find(guides => guides.id.toString() === props.match.params.id);
-          return <Form {...props}
-          initialGuide={guides}
-          submitGuide={editGuide}
-          />;
-      }}/>
+          const guides = guide.find(
+            guides => guides.id.toString() === props.match.params.id
+          );
+          return (
+            <Form {...props} initialGuide={guides} submitGuide={editGuide} />
+          );
+        }}
+      />
     </div>
   );
 
@@ -74,3 +80,7 @@ export default function Guide() {
   //   }
   // };
 }
+export default connect(
+  null,
+  {}
+)(Guide);
