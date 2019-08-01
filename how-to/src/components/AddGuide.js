@@ -18,15 +18,15 @@ const AddGuide = () => {
 
   const handleIngredientSubmit = event => {
   event.preventDefault();
-  let newArray = guide.ingredients;
+  let newArray = fieldValues.ingredients;
   console.log('new array 1', newArray);
 
   newArray.push(ingredientsArray[ingredientsArray.length-1]);
   console.log('new array 2', newArray);
   
-  setGuide([guide.ingredients, ...newArray]);
+  setGuide([fieldValues.ingredients, ...newArray]);
 
-  console.log("guide", guide.ingredients);
+  console.log("fieldValues", fieldValues.ingredients);
 
   setIngredients(['']);
 
@@ -42,6 +42,7 @@ const AddGuide = () => {
     event.preventDefault();
     console.log(guide);
     setGuide({...guide, ...fieldValues})
+    console.log(guide);
   };
 
   const handleSave = event => {
@@ -68,7 +69,7 @@ const AddGuide = () => {
 
         <div>
           <h1>What's Needed:</h1>
-          <AddIngredients guide={guide} />
+          <AddIngredients fieldValues={fieldValues} />
 
           {/* <form onSubmit={event => handleIngredientSubmit(event)}> */}
 
