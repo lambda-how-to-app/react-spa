@@ -40,12 +40,12 @@ const initialState = {
   currentUser: null,
   users: null,
   guide: null,
-  guides: null,
+  guides: [],
   guideById: null,
   error: "",
   isLoading: false,
   isLoggingIn: false,
-  isLoggedIn: false,
+  isLoggedIn: true,
   fetchingData: false,
   deletingGuide: false,
   addingGuide: false,
@@ -65,7 +65,7 @@ export const reducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        guides: null,
+        guides: [],
         currentUser: action.payload,
         error: "",
         isLoading: false,
@@ -84,7 +84,7 @@ export const reducer = (state = initialState, action) => {
     case LOGOUT:
       return {
         ...state,
-        guides: null,
+        guides: [],
         user: null,
         currentUser: null,
         error: "",
@@ -96,7 +96,7 @@ export const reducer = (state = initialState, action) => {
     case GET_GUIDES_START:
       return {
         ...state,
-        guides: null,
+        guides: [],
         error: "",
         isLoading: true,
         fetchingData: true
@@ -121,7 +121,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         user: null,
         users: null,
-        guides: null,
+        guides: [],
         error: "",
         isLoading: true,
         isLoggingIn: false,
@@ -131,7 +131,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
-        guides: null,
+        guides: [],
         error: "",
         isLoading: false,
         isLoggingIn: false,
@@ -229,8 +229,8 @@ export const reducer = (state = initialState, action) => {
         ...state,
         guides: [...state.guides, action.payload],
         error: "",
-        isLoading: true,
-        addingGuide: true
+        isLoading: false,
+        addingGuide: false
       };
     case ADD_GUIDE_FAILURE:
       return {

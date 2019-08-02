@@ -123,7 +123,9 @@ export const deleteGuide = id => dispatch => {
     .delete(`/api/v1/lifehack/${id}`)
     .then(res => {
       dispatch({ type: DELETE_GUIDE_SUCCESS, payload: res.data.body });
+      return true;
     })
+
     .catch(err => {
       console.log(err);
       dispatch({ type: DELETE_GUIDE_FAILURE });

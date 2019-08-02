@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import choco from "../chocomilk.jpg";
 import "./MyGuides.css";
-import MyGuidesPage2 from "./MyGuidesPage2.js";
+import MyGuidePosts from "./MyGuidePosts.js";
 import Paginate from './Paginate.js';
 
 const GuideContainer = styled.div`
@@ -33,7 +33,7 @@ function MyGuides2() {
     const [pages, setPages] = useState([
         {
             id: 0,
-            pageTitle: "Make Chocolate Milk",
+            pageTitle: "Make Chocolate Milk1",
             pageDesc: "short description about this guide here!!!"
         },
         {
@@ -57,9 +57,15 @@ function MyGuides2() {
     const [guidesPerPage, setGuidesPerPage] = useState(3);
 
     // Get current posts
-    // const indexOfLastPost = currentPage * guidesPerPage;
-    // const indexOfFirstPost = indexOfLastPost = guidesPerPage;
-    // const currentPage = page.slice(indexOfFirstPost, indexOfLastPost); 
+    const indexOfLastPost = currentPage * guidesPerPage;                    //1*3=3
+    const indexOfFirstPost = indexOfLastPost - guidesPerPage;               //3-3=0
+    // const currentPage2 = pages.slice({indexOfFirstPost, indexOfLastPost});  //0,1,2
+    
+
+
+    // setCurrentPage(currentPage2);
+    // setPages(currentPage);
+    // console.log(pages);
 
     return (
         <div>
@@ -69,9 +75,10 @@ function MyGuides2() {
 
                 {/* input sort/filter functionality here */}
                 <p>Sort/Filter</p>
-                <MyGuidesPage2 page={pages} />
 
-                <Pagination
+                <MyGuidePosts pages={pages} />
+
+                {/* <Pagination
                     boundaryRange={0}
                     defaultActivePage={1}
                     ellipsisItem={null}
@@ -79,7 +86,8 @@ function MyGuides2() {
                     lastItem={null}
                     siblingRange={1}
                     totalPages={null}
-                />
+                /> */}
+                 
             </GuideContainer>
         </div>
     );

@@ -2,11 +2,11 @@ import React from 'react';
 import { Card, Image } from "semantic-ui-react";
 import choco from "../chocomilk.jpg";
 
-const MyGuidesPage2 = props => {
+const MyGuidePosts = (props) => {
 
     return (
         <div>
-            {props.page.map(pagee => (
+            {props.pages.map(pagee => (
                 <Card.Group>
                     <Image src={choco} avatar />
                     <Card>
@@ -21,4 +21,4 @@ const MyGuidesPage2 = props => {
     );
 };
 
-export default MyGuidesPage2;
+export default MyGuidePosts;
