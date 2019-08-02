@@ -58,7 +58,7 @@ const App = ({ user, isLoggedIn }) => {
 
         <Route path="/edit" render={props => <Form {...props} />} />
         <Route path="/guide/:id" render={props => <Guide {...props} />} />
-        <Route path="/add-guide/delete" component={DeleteGuide} />
+        <PrivateRoute path="/add-guide/delete" component={DeleteGuide} />
         <PrivateRoute path="/user-dashboard" component={UserDashboard} />
 
         <PrivateRoute path="/guide-form" component={GuideForm} />
