@@ -5,6 +5,26 @@ import { connect } from "react-redux";
 
 import { logout } from "../store/actions";
 import SignOut from "./Signout";
+import styled from "styled-components";
+
+const StyledMenu = styled(Menu) `
+  &&&{
+    width:100%;
+    height: 60px;
+    background-color: #876468;
+    color: FFFFFF;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    border: none;
+    border-radius: 0;
+  }
+`
+  const H1 = styled.h1 `
+    color: #FFFFFF;
+    margin: 0 auto;
+    margin-top: 10px;
+  `
 
 const NavBar = props => {
   const [menuState, setMenuState] = useState({});
@@ -14,15 +34,16 @@ const NavBar = props => {
   const { activeItem } = menuState;
 
   return (
-    <Menu>
-      <Menu.Item
+    <StyledMenu inverted color='brown'>
+      <Menu.Item color='#FFFFFF;' to="/"
         as={NavLink}
         to="/"
         name="how-to"
         active={activeItem === "how-to"}
-        content="How-To"
+        content="Home"
         onClick={handleItemClick}
       />
+      <H1>HOW-TO</H1>
       {!props.user && !localStorage.getItem("token") ? (
         <>
           <Menu.Item
@@ -66,7 +87,7 @@ const NavBar = props => {
           </Menu.Item>
         </>
       )}
-    </Menu>
+    </StyledMenu>
   );
 };
 

@@ -9,7 +9,7 @@ function UserDashboard(props) {
         <h1>BROWSE GUIDES</h1>
         <div class="ui card" id="populercardOne">
           <div class="content">
-            <div class="header">Poupler guide</div>
+            <div class="header"></div>
             <div class="meta">
               <span>description will go here</span>
             </div>
