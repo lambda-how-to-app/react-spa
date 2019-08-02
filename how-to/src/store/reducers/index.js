@@ -45,7 +45,7 @@ const initialState = {
   error: "",
   isLoading: false,
   isLoggingIn: false,
-  isLoggedIn: true,
+  isLoggedIn: false,
   fetchingData: false,
   deletingGuide: false,
   addingGuide: false,

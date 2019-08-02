@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button, Form, Header, Input } from "semantic-ui-react";
+import styled from "styled-components";
 import { Formik } from "formik";
 import * as Yup from "yup";
 

@@ -7,9 +7,9 @@ import { logout } from "../store/actions";
 import SignOut from "./Signout";
 import styled from "styled-components";
 
-const StyledMenu = styled(Menu) `
-  &&&{
-    width:100%;
+const StyledMenu = styled(Menu)`
+  &&& {
+    width: 100%;
     height: 60px;
     background-color: #876468;
     color: FFFFFF;
@@ -19,12 +19,12 @@ const StyledMenu = styled(Menu) `
     border: none;
     border-radius: 0;
   }
-`
-  const H1 = styled.h1 `
-    color: #FFFFFF;
-    margin: 0 auto;
-    margin-top: 10px;
-  `
+`;
+const H1 = styled.h1`
+  color: #ffffff;
+  margin: 0 auto;
+  margin-top: 10px;
+`;
 
 const NavBar = props => {
   const [menuState, setMenuState] = useState({});
@@ -34,16 +34,18 @@ const NavBar = props => {
   const { activeItem } = menuState;
 
   return (
-    <StyledMenu inverted color='brown'>
-      <Menu.Item to="/"
+    <StyledMenu>
+      <Menu.Item
+        class="homeButton"
+        to="/"
         as={NavLink}
         to="/"
         name="how-to"
         active={activeItem === "how-to"}
-        content="Home"
+        content="HOW-TO"
         onClick={handleItemClick}
       />
-      <H1>HOW-TO</H1>
+
       {!props.user && !localStorage.getItem("token") ? (
         <>
           <Menu.Item
@@ -51,7 +53,7 @@ const NavBar = props => {
             to="/login"
             name="login"
             active={activeItem === "login"}
-            content="Log In"
+            content="Sign In"
             onClick={handleItemClick}
             position="right"
           />
@@ -60,7 +62,7 @@ const NavBar = props => {
             to="/sign-up"
             name="signup"
             active={activeItem === "signup"}
-            content="Sign Up"
+            content="Join"
             onClick={handleItemClick}
           />
         </>

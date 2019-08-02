@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-
 import { Button, Form, Header, Input, Radio } from "semantic-ui-react";
 
 import { signUp } from "../store/actions";
@@ -19,8 +18,6 @@ const Signup = (props, { isSubmitting }) => {
     align-items: center;
     flex-direction: center;
   `;
-
-
 
   const LoginSchema = Yup.object().shape({
     // fullname: Yup.string().required("Name is required"),
@@ -39,7 +36,9 @@ const Signup = (props, { isSubmitting }) => {
 
   return (
     <SecretDiv>
-      <Header size="huge">Welcome To How-To</Header>
+      <Header className="sign-up-header" as="h1">
+        Welcome To How-To
+      </Header>
 
       <Formik
         validationSchema={LoginSchema}
@@ -69,9 +68,8 @@ const Signup = (props, { isSubmitting }) => {
           values,
           setFieldValue
         }) => {
-          
           return (
-            <Form onSubmit={handleSubmit}>
+            <Form className="formContainer" onSubmit={handleSubmit}>
               <Form.Group>
                 <label>Choose Account Type</label>
                 <Form.Field
