@@ -45,7 +45,7 @@ const initialState = {
   error: "",
   isLoading: false,
   isLoggingIn: false,
-  isLoggedIn: true,
+  isLoggedIn: false,
   fetchingData: false,
   deletingGuide: false,
   addingGuide: false,
@@ -249,6 +249,7 @@ export const reducer = (state = initialState, action) => {
     case UPDATE_GUIDE_SUCCESS:
       return {
         ...state,
+        guides: [...state.guides],
         error: "",
         isLoading: false,
         updatingGuide: false

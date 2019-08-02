@@ -21,22 +21,43 @@ const Span = styled.div`
   margin-top: 61px;
   margin-left: 12px;
 `;
-
+const ImageDiv = styled.div`
+  border: solid black;
+  height: 100px;
+`
 const ProfileImage = styled.img`
   width: 116px;
   height: 116px;
   border-radius: 50%;
 `;
-
+const UsernameWrapper = styled.div`
+  width: 80%;
+  height: 120px;
+  margin-bottom:0;
+  border: solid black;
+`
+const H2 = styled.h2`
+  width: 100%;
+  font-family: Nunito;
+  margin-top:0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  margin-left: 10px;
+  line-height: 10px;
+  text-align: left;
+  color: #000000;
+`;
 const H3 = styled.h3`
-  width: 198px;
-  height: 44px;
+  width: 100%;
   font-family: Nunito;
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
-  line-height: 44px;
-  text-align: center;
+  margin-left: 10px;
+  margin-top: 100px;
+  line-height: 40px;
+  text-align: left;
   color: #000000;
 `;
 const LineDiv = styled.div`
@@ -102,15 +123,19 @@ const CreatorDashboard = props => {
       <Span>
         {" "}
         {/*user card */}
-        <ProfileImage
-          src={props.user ? props.user.profileImage : null}
-          alt="your uploaded user-photo"
-        />
-        <h2>{props.user ? props.user.fullname : null}</h2>
-        <h3>{props.user ? props.user.username : null}</h3>
-        <Link to="/settings">
-          <img src="" alt="edit icon" />
-        </Link>
+        <ImageDiv>
+          <ProfileImage
+            src={props.user ? props.user.profileimage : null}
+            alt="your uploaded user-photo"
+          />
+        </ImageDiv>
+        <UsernameWrapper>
+          <H3>{props.user ? props.user.fullname : "Firstname Lastname"}</H3>
+          <H2>{props.user ? props.user.username : "User Name"}</H2>
+        </UsernameWrapper>
+        {/* <Link to="/settings">
+          <img src="../public/images/edit-icon.png" alt="edit icon" />
+        </Link> */}
       </Span>
 
       <LineDiv>{/*grey line under the user card */}</LineDiv>
