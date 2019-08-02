@@ -1,3 +1,7 @@
+* {
+  font-family: "Nunito", sans-serif !important;
+}
+
 .ui.header {
   margin: 40px 20px !important;
   text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.164);
@@ -116,4 +120,44 @@ a.newAcct:hover {
   text-align: center;
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+.home.icon {
+  margin-left: 10px !important;
+}
+
+.icon {
+  font-family: Icons !important;
+  font-size: 1.2rem !important;
+}
+
+.actions {
+  text-align: center !important;
+}
+
+.content {
+  margin-top: 0 !important;
+}
+
+.content > p {
+  text-align: center;
+  width: 100%;
+}
+
+.ui.red.button,
+.ui.green.button {
+  width: 35vw !important;
+}
+
+.ui.container.dimmable.dimmed {
+  height: 100% !important;
+}
+
+.ui.container img {
+  width: 100% !important;
+}
+
+.ui.container h5 {
+  font-size: 1.4rem !important;
+  text-align: center !important;
 }
