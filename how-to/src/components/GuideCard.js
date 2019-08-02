@@ -4,7 +4,7 @@ const GuideCard = ({ guide, users }) => {
   const guideUserId = guide.guide_auth_id;
 
   const StyledCard = styled.div`
-    width: 300px;
+    width: 320px;
     height: 200px;
     margin:10px auto;
     background-color: #7EA85E; 
@@ -17,10 +17,11 @@ const GuideCard = ({ guide, users }) => {
     flex-flow: column nowrap;
   `
    const StyledSpan = styled.span `
-   width: 90px;
-   height: 90px;
-   margin-left: 10px;
-   margin-top: 5px;
+    width: 90px;
+    height: 90px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-right: 20px;
    `
 
   const CircleImage = styled.img`
@@ -30,11 +31,12 @@ const GuideCard = ({ guide, users }) => {
 
 `
   const AychFour = styled.h4 `
-  font-family: Nunito;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  float: right;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    float: right;
+    text-align: center;
   
   `
   const AychFourWrap = styled.div `
@@ -46,9 +48,11 @@ const GuideCard = ({ guide, users }) => {
     width:100%;
     margin-top: 50px;
     height: 100px;
+    margin-right: 20px;
   `
   const Para = styled.p `
     width:100%;
+    margin-right: 20px;
     text-align: center;
     overflow-wrap: break-word;
   `

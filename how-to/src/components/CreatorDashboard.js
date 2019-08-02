@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { axiosWithAuth } from "../utilities/axiosWithAuth";
 import { connect } from "react-redux";
+import SignOut from "./Signout";
 import { logout, getSingleUser } from "../store/actions";
 import decode from "jwt-decode";
+import userImage from '../defaultuser.jpg'
 //
 import UsersList from "./UsersList";
 
@@ -24,12 +26,16 @@ const Span = styled.div`
   margin-bottom: 5px;
 `;
 const ImageDiv = styled.div`
-  height: 100px;
+  height: 116px;
+  width:116px;
+  margin-left:10px;
+  margin-top:5px;
 `
 const ProfileImage = styled.img`
   width: 116px;
   height: 116px;
   border-radius: 50%;
+  margin-top:5px;
 `;
 const UsernameWrapper = styled.div`
   width: 80%;
@@ -76,10 +82,10 @@ const CardContainer = styled.div`
 `;
 
 const Card = styled.div`
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 140px;
   margin-top: 15px;
-  background: #678650;
+  background: #7EA85E;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -96,6 +102,7 @@ const CardP = styled.p`
   text-align: center;
   letter-spacing: 7px;
   color: #ffffff;
+  margin-bottom:10px;
 `;
 const CreatorDashboard = props => {
   const [userInfo, setUserInfo] = useState({
@@ -124,7 +131,7 @@ const CreatorDashboard = props => {
         {/*user card */}
         <ImageDiv>
           <ProfileImage
-            src={props.user ? props.user.profileimage : null}
+            src={userImage}
             alt="your uploaded user-photo"
           />
         </ImageDiv>
@@ -164,7 +171,7 @@ const CreatorDashboard = props => {
             <CardP>Add Guide</CardP>
           </Card>
         </Link>
-        <Link to="/Settings">
+        <Link to="/Signout">
           <Card>
             {/*box link thing*/}
             <CardP>Log Out</CardP>

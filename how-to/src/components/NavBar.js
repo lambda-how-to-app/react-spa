@@ -21,9 +21,11 @@ const StyledMenu = styled(Menu)`
   }
 `;
 const H1 = styled.h1`
+  width:100%;  
   color: #ffffff;
-  margin: 0 auto;
-  margin-top: 10px;
+  text-align: center;
+  margin-top: -60px;
+  font-size: 25px;
 `;
 
 const NavBar = props => {
@@ -34,6 +36,7 @@ const NavBar = props => {
   const { activeItem } = menuState;
 
   return (
+    <>
     <StyledMenu>
       <Menu.Item
         class="homeButton"
@@ -47,7 +50,7 @@ const NavBar = props => {
       >
         <Icon name="home" />
       </Menu.Item>
-
+      
       {!props.isLoggedIn && !localStorage.getItem("token") ? (
         <>
           <Menu.Item
@@ -92,6 +95,8 @@ const NavBar = props => {
         </>
       )}
     </StyledMenu>
+    <H1>HOW-TO</H1>
+    </>
   );
 };
 
