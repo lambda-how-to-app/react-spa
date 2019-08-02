@@ -1,28 +1,33 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { axiosWithAuth } from "../utilities/axiosWithAuth";
 import { connect } from "react-redux";
 import { getGuides, getUsers } from "../store/actions";
 import GuideCard from "./GuideCard";
-import UserCard from "./UserCard";
+import { Header } from "semantic-ui-react";
 import styled from "styled-components";
-import "./MyGuides.css";
 
 const GuideContainer = styled.div`
+  width: 95%;
   margin: 0 auto;
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 `;
 
 const LineDiv = styled.div`
-  width: 353px;
+  width: 95%;
+  margin: 0 auto;
   height: 8px;
-  top: 9px;
   background: #5c5c5c;
   margin-bottom: 14px;
 `;
 
+const StyledLink = styled(Link)`
+  &&&{
+    text-decoration: none !important;
+    color: black;
+  }
+`
 const GuideList = ({ getGuides, getUsers, guides, users }) => {
   useEffect(() => {
     getGuides();
@@ -30,20 +35,21 @@ const GuideList = ({ getGuides, getUsers, guides, users }) => {
   }, [getGuides, getUsers]);
 
   return (
-    <div className="guide-list-container">
-      <h3>Browse All Guides</h3>
+    <div>
+      <Header>Browse All Guides</Header>
+      <LineDiv></LineDiv>
       <GuideContainer>
-        {guides
-          ? guides
+          {guides
+            ? guides
               .sort((a, b) => {
                 return new Date(b.created_at) - new Date(a.created_at);
               })
               .map((guide, index) => (
-                <Link key={index} to={`/guide/${guide.id}`}>
+                <StyledLink to={`/guide/${guide.id}`}>
                   <GuideCard key={index} users={users} guide={guide} />
-                </Link>
+                </StyledLink>
               ))
-          : null}
+            : null}
       </GuideContainer>
     </div>
   );
