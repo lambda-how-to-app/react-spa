@@ -132,7 +132,7 @@ const CreatorDashboard = props => {
             <CardP>My Guides</CardP>
           </Card>
         </Link>
-        <Link to="/add-guide">
+        <Link to="/guide-form">
           <Card>
             {/*box link thing*/}
             <CardP>Add Guide</CardP>
