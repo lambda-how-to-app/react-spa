@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Header, Card, Image, Pagination } from "semantic-ui-react";
+import { Header, Pagination } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -11,20 +11,32 @@ import choco from "../chocomilk.jpg";
 import "./MyGuides.css";
 
 const GuideContainer = styled.div`
+  width: 95%;
   margin: 0 auto;
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 `;
 
 const LineDiv = styled.div`
-  width: 353px;
+  width: 95%;
+  margin: 0 auto;
   height: 8px;
-  top: 9px;
   background: #5c5c5c;
   margin-bottom: 14px;
 `;
 
+const AychThree = styled.h3`
+  width: 100%;
+  text-align:center;
+`
+
+const StyledLink = styled(Link)`
+  &&&{
+    text-decoration: none !important;
+    color: black;
+  }
+`
 // to edit with user's guide id
 const handleClick = () => {
   console.log("guide clicked!");
@@ -47,7 +59,6 @@ function MyGuides({ guides, users, getGuides, getUsers }) {
         <LineDiv>{/*grey line under the user card */}</LineDiv>
 
         {/* input sort/filter functionality here */}
-        <p className-="sortTag">Sort/Filter</p>
         {guides && userId
           ? guides
               .sort((a, b) => {
@@ -55,9 +66,9 @@ function MyGuides({ guides, users, getGuides, getUsers }) {
               })
               .filter(guide => guide.guide_auth_id === userId)
               .map((guide, index) => (
-                <Link key={index} to={`/guide/${guide.id}`}>
+                <StyledLink key={index} to={`/guide/${guide.id}`}>
                   <GuideCard key={index} users={users} guide={guide} />
-                </Link>
+                </StyledLink>
               ))
           : null}
 
