@@ -4,35 +4,30 @@ import { Button, Form, Header, Input } from "semantic-ui-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { login } from "../store/actions";
+import { addGuide } from "../store/actions";
 
-import "./Login.css";
-
-const Login = (props, { isSubmitting }) => {
+const GuideForm = props => {
+  console.log(props);
   const LoginSchema = Yup.object().shape({
-    email: Yup.string()
-      .email()
-      .required("Your email is required"),
-    password: Yup.string()
-      .min(8, "Your password must be at least 8 characters long")
-      .required("Your password is required")
+    title: Yup.string().required("Guide title is required"),
+    image: Yup.string()
   });
 
   return (
     <div className="ui center aligned container">
-      <Header as="h1">Welcome Back</Header>
+      <Header as="h1">Create a Guide</Header>
 
       <Formik
         validationSchema={LoginSchema}
         initialValues={{
-          email: "bey@gmail.com",
-          password: "123456789"
+          title: "",
+          image: ""
         }}
         onSubmit={(values, actions) => {
-          props.login(values).then(res => {
+          props.addGuide(values).then(res => {
             if (res) {
               const userType = localStorage.getItem("userType");
-              props.history.push(`/${userType}-dashboard`);
+              props.history.push(`/`);
               actions.resetForm("");
             }
           });
@@ -48,51 +43,40 @@ const Login = (props, { isSubmitting }) => {
           return (
             <Form className="formContainer" onSubmit={handleSubmit}>
               <Form.Field
-                value={values.email || ""}
-                label="Email Address"
+                value={values.title || ""}
+                label="Guide Title"
                 className="emailContainer"
                 control={Input}
                 autoComplete="off"
-                placeholder="Email Address"
-                name="email"
-                type="email"
+                placeholder="Guide Title"
+                name="title"
+                type="text"
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.email && touched.email ? (
-                <p style={{ margin: "0", color: "red" }}>{errors.email}</p>
+              {errors.title && touched.title ? (
+                <p style={{ margin: "0", color: "red" }}>{errors.title}</p>
               ) : null}
               <Form.Field
-                value={values.password || ""}
-                label="Password"
+                value={values.image || ""}
+                label="Guide Image URL"
                 className="passwordContainer"
                 control={Input}
                 autoComplete="off"
-                placeholder="Password"
-                name="password"
-                type="password"
+                placeholder="Guide Image URL"
+                name="image"
+                type="text"
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.password && touched.password ? (
-                <p style={{ margin: "0", color: "red" }}>{errors.password}</p>
+              {errors.image && touched.image ? (
+                <p style={{ margin: "0", color: "red" }}>{errors.image}</p>
               ) : null}
-              <p className="resetCred">
-                <a href="#" className="forgotPw">
-                  Forgot Your Password?
-                </a>
-              </p>
+
               <Button className="loginButton" type="submit" color="blue">
-                Sign In &rarr;
+                Next Step &rarr;
               </Button>
 
-              <p className="resetCred">
-                Don't have an account?{" "}
-                <a href="#" className="newAcct">
-                  Sign Up
-                </a>{" "}
-                here!
-              </p>
               {props.isLoggingIn && <div>"Loading!"</div>}
             </Form>
           );
@@ -116,5 +100,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { login }
-)(Login);
+  { addGuide }
+)(GuideForm);

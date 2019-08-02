@@ -1,18 +1,16 @@
 import React from "react";
 
 const AddIngredients = (props) => {
-   
+   const {fieldValues} = props;
    
     return (
-        <>
-             <div>
-                <ul>
-                    {props.ingredients && props.ingredients.map(ingredient => <li key={"key_ingredient_"+props.ingredients.indexOf(ingredient)}>{ingredient}</li>)}
-                </ul>
-            </div>
-        </>
-    )
+           <>
+               <ul>
+                   {fieldValues && fieldValues.ingredients.map(ingredient => <li key={"key_ingredient_"+fieldValues.ingredients.indexOf(ingredient)}>{ingredient}</li>)}
+               </ul>
+            </>   
+        )}
+        
 
-}
 
 export default AddIngredients;

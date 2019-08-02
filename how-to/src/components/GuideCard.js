@@ -1,9 +1,10 @@
 import React from "react";
 import { Card, Image } from "semantic-ui-react";
 
-const GuideCard = ({ guide }) => {
-  console.log(guide);
+const GuideCard = ({ guide, users }) => {
+  const guideUserId = guide.guide_auth_id;
   return (
+
     <Card>
       <Card.Content>
         <Image src={guide.banner_image} size='small' circular />

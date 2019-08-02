@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { axiosWithAuth } from "../utilities/axiosWithAuth";
 import { connect } from "react-redux";
-
+import { logout, getSingleUser } from "../store/actions";
+import decode from "jwt-decode";
+//
 import UsersList from "./UsersList";
 
 const BodyWrap = styled.div`
@@ -76,23 +78,45 @@ const CardP = styled.p`
   color: #ffffff;
 `;
 const CreatorDashboard = props => {
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+    userImg: "",
+    userEmail: ""
+  });
+
+  let userId;
+  if (localStorage.token) {
+    userId = decode(localStorage.getItem("token")).userId;
+  }
+
+  useEffect(
+    () => {
+      props.getSingleUser(userId);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
   return (
     <BodyWrap>
       <Span>
         {" "}
         {/*user card */}
         <ProfileImage
-          src="{/*pulled in from the back end*/}"
+          src={props.user ? props.user.profileImage : null}
           alt="your uploaded user-photo"
         />
-        <H3>Creator_name{/*actual name will be pulled in from backend*/}</H3>
+        <h2>{props.user ? props.user.fullname : null}</h2>
+        <h3>{props.user ? props.user.username : null}</h3>
         <Link to="/settings">
           <img src="" alt="edit icon" />
         </Link>
       </Span>
 
       <LineDiv>{/*grey line under the user card */}</LineDiv>
-
+      <button onClick={() => props.getSingleUser(userId)}>
+        Get Single User
+      </button>
       <CardContainer>
         {" "}
         {/* guide-links card container */}
@@ -102,34 +126,22 @@ const CreatorDashboard = props => {
             <CardP>Browse Guides</CardP>
           </Card>
         </Link>
-        <Link to="/Myguides">
+        <Link to="/my-guides">
           <Card>
             {/*box link thing*/}
             <CardP>My Guides</CardP>
           </Card>
         </Link>
-        <Link to="/add-guide">
+        <Link to="/guide-form">
           <Card>
             {/*box link thing*/}
             <CardP>Add Guide</CardP>
           </Card>
         </Link>
-        <Link to="/EditGuide">
-          <Card>
-            {/*box link thing*/}
-            <CardP>Edit Guide</CardP>
-          </Card>
-        </Link>
-        <Link to="/Followers">
-          <Card>
-            {/*box link thing*/}
-            <CardP>Followers</CardP>
-          </Card>
-        </Link>
         <Link to="/Settings">
           <Card>
             {/*box link thing*/}
-            <CardP>Settings</CardP>
+            <CardP>Log Out</CardP>
           </Card>
         </Link>
       </CardContainer>
@@ -138,7 +150,6 @@ const CreatorDashboard = props => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     user: state.user
   };
@@ -146,5 +157,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { logout, getSingleUser }
 )(CreatorDashboard);

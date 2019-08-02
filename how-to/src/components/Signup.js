@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Formik } from "formik";
 import * as Yup from "yup";
+
+
 import { Button, Form, Header, Input, Radio } from "semantic-ui-react";
 
 import { signUp } from "../store/actions";
@@ -17,6 +19,8 @@ const Signup = (props, { isSubmitting }) => {
     align-items: center;
     flex-direction: center;
   `;
+
+
 
   const LoginSchema = Yup.object().shape({
     // fullname: Yup.string().required("Name is required"),
@@ -48,9 +52,7 @@ const Signup = (props, { isSubmitting }) => {
           /* confirmpassword: "" */
         }}
         onSubmit={(values, actions) => {
-          console.log(values);
           props.signUp(values).then(res => {
-            console.log(res);
             if (res) {
               const userType = localStorage.getItem("userType");
               props.history.push(`/${userType}-dashboard`);
@@ -67,6 +69,7 @@ const Signup = (props, { isSubmitting }) => {
           values,
           setFieldValue
         }) => {
+          
           return (
             <Form onSubmit={handleSubmit}>
               <Form.Group>
@@ -185,7 +188,6 @@ const Signup = (props, { isSubmitting }) => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     user: state.user
   };

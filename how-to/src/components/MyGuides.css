@@ -1,0 +1,26 @@
+div.ui.cards {
+    background: #7EA85E;
+    margin-bottom: 2em;
+    width: fit-content;
+
+    height: 115px;
+    font-size: 0.76rem;
+}
+
+div.ui.cards>.card {
+    background: #7EA85E;
+    border: none;
+    display: contents;
+    font-size: 1.1em;
+    margin-left: 15px;
+}
+
+img.ui.avatar.image {
+    width: 6em;
+    height: 6em;
+}
+
+p {
+    padding-bottom: 8px;
+    width: 353px;
+}

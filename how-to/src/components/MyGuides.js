@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
+import { Header, Card, Image, Pagination } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { axiosWithAuth } from "../utilities/axiosWithAuth";
-import { connect } from "react-redux";
-import { getGuides, getUsers } from "../store/actions";
-import GuideCard from "./GuideCard";
-import UserCard from "./UserCard";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import GuideCard from "./GuideCard";
+import { getGuides, getUsers } from "../store/actions";
+import decode from "jwt-decode";
+
+import choco from "../chocomilk.jpg";
 import "./MyGuides.css";
 
 const GuideContainer = styled.div`
@@ -23,31 +25,55 @@ const LineDiv = styled.div`
   margin-bottom: 14px;
 `;
 
-const GuideList = ({ getGuides, getUsers, guides, users }) => {
+// to edit with user's guide id
+const handleClick = () => {
+  console.log("guide clicked!");
+};
+
+let userId;
+if (localStorage.token) {
+  userId = decode(localStorage.getItem("token")).userId;
+}
+
+function MyGuides({ guides, users, getGuides, getUsers }) {
   useEffect(() => {
     getGuides();
     getUsers();
   }, [getGuides, getUsers]);
-
   return (
-    <div className="guide-list-container">
-      <h3>Browse All Guides</h3>
+    <div>
       <GuideContainer>
-        {guides
+        <Header as="h1">MY GUIDES</Header>
+        <LineDiv>{/*grey line under the user card */}</LineDiv>
+
+        {/* input sort/filter functionality here */}
+        <p className-="sortTag">Sort/Filter</p>
+        {guides && userId
           ? guides
               .sort((a, b) => {
                 return new Date(b.created_at) - new Date(a.created_at);
               })
+              .filter(guide => guide.guide_auth_id === userId)
               .map((guide, index) => (
                 <Link key={index} to={`/guide/${guide.id}`}>
                   <GuideCard key={index} users={users} guide={guide} />
                 </Link>
               ))
           : null}
+
+        <Pagination
+          boundaryRange={0}
+          defaultActivePage={1}
+          ellipsisItem={null}
+          firstItem={null}
+          lastItem={null}
+          siblingRange={1}
+          // totalPages={10}
+        />
       </GuideContainer>
     </div>
   );
-};
+}
 
 const mapStateToProps = state => {
   return {
@@ -59,4 +85,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getGuides, getUsers }
-)(GuideList);
+)(MyGuides);

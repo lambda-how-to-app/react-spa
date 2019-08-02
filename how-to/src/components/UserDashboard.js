@@ -1,12 +1,10 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-import '../../src/index.css'
+import { Link } from "react-router-dom";
+import "../../src/index.css";
 
 function UserDashboard(props) {
-  console.log("User dashboard")
-  console.log(props)
   return (
-    <div id='Cantainer'>
+    <div id="Cantainer">
       <div id="topcontainer">
         <h1>BROWSE GUIDES</h1>
         <div class="ui card" id="populercardOne">
@@ -37,9 +35,7 @@ function UserDashboard(props) {
               </a>
               <div class="content">
                 <h4 class="ui dividing header">Guide one</h4>
-                <div class="metadata">
-                  description will go here..
-          </div>
+                <div class="metadata">description will go here..</div>
               </div>
             </div>
           </div>
@@ -55,9 +51,7 @@ function UserDashboard(props) {
               </a>
               <div class="content">
                 <h4 class="ui dividing header">Guide two</h4>
-                <div class="metadata">
-                  description will go here..
-       </div>
+                <div class="metadata">description will go here..</div>
               </div>
             </div>
           </div>
@@ -73,9 +67,7 @@ function UserDashboard(props) {
               </a>
               <div class="content">
                 <h4 class="ui dividing header">Guide three</h4>
-                <div class="metadata">
-                  description will go here..
-       </div>
+                <div class="metadata">description will go here..</div>
               </div>
             </div>
           </div>
@@ -91,9 +83,7 @@ function UserDashboard(props) {
               </a>
               <div class="content">
                 <h4 class="ui dividing header">Guide Four</h4>
-                <div class="metadata">
-                  description will go here..
-       </div>
+                <div class="metadata">description will go here..</div>
               </div>
             </div>
           </div>
@@ -101,6 +91,6 @@ function UserDashboard(props) {
       </div>
     </div>
   );
-};
+}
 
 export default UserDashboard;
