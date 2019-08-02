@@ -17,11 +17,11 @@ const GuideCard = ({ guide, users }) => {
     flex-flow: column nowrap;
   `
    const StyledSpan = styled.span `
-   width: 90px;
-   height: 90px;
-   margin-left: 10px;
-   margin-top: 5px;
-   margin-right: 20px;
+    width: 90px;
+    height: 90px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-right: 20px;
    `
 
   const CircleImage = styled.img`
@@ -31,12 +31,12 @@ const GuideCard = ({ guide, users }) => {
 
 `
   const AychFour = styled.h4 `
-  font-family: Nunito;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  float: right;
-  text-align: center;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    float: right;
+    text-align: center;
   
   `
   const AychFourWrap = styled.div `

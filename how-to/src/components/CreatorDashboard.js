@@ -76,10 +76,10 @@ const CardContainer = styled.div`
 `;
 
 const Card = styled.div`
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 140px;
   margin-top: 15px;
-  background: #678650;
+  background: #7EA85E;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -96,6 +96,7 @@ const CardP = styled.p`
   text-align: center;
   letter-spacing: 7px;
   color: #ffffff;
+  margin-bottom:10px;
 `;
 const CreatorDashboard = props => {
   const [userInfo, setUserInfo] = useState({
