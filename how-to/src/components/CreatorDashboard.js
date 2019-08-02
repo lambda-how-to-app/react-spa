@@ -9,20 +9,21 @@ import decode from "jwt-decode";
 import UsersList from "./UsersList";
 
 const BodyWrap = styled.div`
-  background-color: #e5e5e5;
-  width: 374px;
+  background-color: #FFFFFF;
+  width: 100%;
   height: auto;
+  margin: 0 auto;
+  padding-bottom:20px;
 `;
 
 const Span = styled.div`
-  width: 344px;
+  width: 100%;
   height: 219px;
   background: #b89498;
-  margin-top: 61px;
-  margin-left: 12px;
+  margin-top: 0;
+  margin-bottom: 5px;
 `;
 const ImageDiv = styled.div`
-  border: solid black;
   height: 100px;
 `
 const ProfileImage = styled.img`
@@ -34,7 +35,6 @@ const UsernameWrapper = styled.div`
   width: 80%;
   height: 120px;
   margin-bottom:0;
-  border: solid black;
 `
 const H2 = styled.h2`
   width: 100%;
@@ -53,7 +53,7 @@ const H3 = styled.h3`
   font-family: Nunito;
   font-style: normal;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 30px;
   margin-left: 10px;
   margin-top: 100px;
   line-height: 40px;
@@ -61,15 +61,14 @@ const H3 = styled.h3`
   color: #000000;
 `;
 const LineDiv = styled.div`
-  width: 362px;
-  margin-left: 6px;
+  width: 95%;
+  margin: 0 auto;
   height: 8px;
-  top: 9px;
   background: #5c5c5c;
 `;
 
 const CardContainer = styled.div`
-  width: 372px;
+  width: 400px;
   margin: 0 auto;
   display: flex;
   flex-flow: row wrap;
@@ -77,8 +76,8 @@ const CardContainer = styled.div`
 `;
 
 const Card = styled.div`
-  width: 132px;
-  height: 132px;
+  width: 150px;
+  height: 150px;
   margin-top: 15px;
   background: #678650;
   display: flex;
@@ -139,10 +138,12 @@ const CreatorDashboard = props => {
       </Span>
 
       <LineDiv>{/*grey line under the user card */}</LineDiv>
-      <button onClick={() => props.getSingleUser(userId)}>
+      
+      {/* <button onClick={() => props.getSingleUser(userId)}>
         Get Single User
-      </button>
+      </button> */}
       <CardContainer>
+      
         {" "}
         {/* guide-links card container */}
         <Link to="/guides">
