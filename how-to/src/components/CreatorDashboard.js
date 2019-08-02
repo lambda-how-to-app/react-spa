@@ -6,8 +6,7 @@ import { connect } from "react-redux";
 import SignOut from "./Signout";
 import { logout, getSingleUser } from "../store/actions";
 import decode from "jwt-decode";
-import userImage from '../defaultuser.jpg'
-//
+import userImage from '../default-user-img.jpg'
 import UsersList from "./UsersList";
 
 const BodyWrap = styled.div`
