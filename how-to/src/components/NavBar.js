@@ -36,7 +36,6 @@ const NavBar = props => {
   return (
     <StyledMenu inverted color="brown">
       <Menu.Item
-        color="#FFFFFF;"
         to="/"
         as={NavLink}
         to="/"
