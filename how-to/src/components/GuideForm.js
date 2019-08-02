@@ -25,9 +25,10 @@ const GuideForm = props => {
         }}
         onSubmit={(values, actions) => {
           props.addGuide(values).then(res => {
+            console.log(res);
             if (res) {
               const userType = localStorage.getItem("userType");
-              props.history.push(`/`);
+              props.history.push(`/my-guides`);
               actions.resetForm("");
             }
           });

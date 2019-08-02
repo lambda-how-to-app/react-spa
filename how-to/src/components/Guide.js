@@ -4,12 +4,22 @@ import { connect } from "react-redux";
 import { Header } from "semantic-ui-react";
 import { getGuideById, deleteGuide } from "../store/actions";
 import DeleteGuide from "./DeleteGuide";
+import decode from "jwt-decode";
 
 import Form from "./Form.js";
 import Card from "./Card.js";
 import choco from "../chocomilk.jpg";
 
 function Guide(props) {
+  let userId;
+  if (localStorage.token) {
+    userId = decode(localStorage.getItem("token")).userId;
+  }
+  if (props.guide) {
+    console.log(props.guide.guide_auth_id);
+    console.log(userId);
+  }
+
   useEffect(
     () => {
       const {
@@ -44,7 +54,11 @@ function Guide(props) {
     const {
       match: { params }
     } = props;
-    props.deleteGuide(params.id);
+    props.deleteGuide(params.id).then(res => {
+      if (res) {
+        props.history.push("/my-guides");
+      }
+    });
   };
 
   return (
@@ -54,8 +68,10 @@ function Guide(props) {
         <h4>&larr;Back to Guides</h4>
       </Link>
       <Card guide={props.guide} />
+      {props.guide && userId === props.guide.guide_auth_id ? (
+        <DeleteGuide deleteGuide={deleteGuide} />
+      ) : null}
 
-      <DeleteGuide deleteGuide={deleteGuide} />
       <Route
         path="/edit/:name"
         render={props => {

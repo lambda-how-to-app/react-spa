@@ -142,6 +142,7 @@ export const addGuide = guide => dispatch => {
     .post("/api/v1/lifehack", guide)
     .then(res => {
       dispatch({ type: ADD_GUIDE_SUCCESS, payload: res.data.body });
+      return true;
     })
     .catch(err => {
       console.log(err);
