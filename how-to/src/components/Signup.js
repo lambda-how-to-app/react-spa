@@ -5,7 +5,15 @@ import styled from "styled-components";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { Button, Form, Header, Input, Radio } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Header,
+  Input,
+  Radio,
+  Dimmer,
+  Loader
+} from "semantic-ui-react";
 
 import { signUp } from "../store/actions";
 
@@ -43,10 +51,10 @@ const Signup = (props, { isSubmitting }) => {
       <Formik
         validationSchema={LoginSchema}
         initialValues={{
-          fullname: "",
-          username: "",
-          email: "",
-          password: "",
+          fullname: "Johhny Doe",
+          username: "jd123",
+          email: "jd123@gmail.com",
+          password: "12345678",
           guide: false
           /* confirmpassword: "" */
         }}
@@ -181,13 +189,24 @@ const Signup = (props, { isSubmitting }) => {
           );
         }}
       />
+      {props.isLoading && (
+        <Dimmer active>
+          <Loader size="massive" />
+        </Dimmer>
+      )}
     </SecretDiv>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    users: state.users,
+    guides: state.guides,
+    error: state.error,
+    isLoading: state.isLoading,
+    isLoggingIn: state.isLoggingIn,
+    fetchingData: state.fetchingData
   };
 };
 

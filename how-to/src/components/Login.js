@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Form, Header, Input } from "semantic-ui-react";
+import { Button, Form, Header, Input, Dimmer, Loader } from "semantic-ui-react";
 import styled from "styled-components";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -94,11 +94,15 @@ const Login = (props, { isSubmitting }) => {
                 </a>{" "}
                 here!
               </p>
-              {props.isLoggingIn && <div>"Loading!"</div>}
             </Form>
           );
         }}
       />
+      {props.isLoggingIn && (
+        <Dimmer active>
+          <Loader size="massive" />
+        </Dimmer>
+      )}
     </div>
   );
 };
