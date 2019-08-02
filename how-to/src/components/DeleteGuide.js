@@ -4,7 +4,15 @@ import { Button, Header, Icon, Modal } from "semantic-ui-react";
 // Created Modal for Delete Guide use
 // Link to modal when 'delete' is clicked
 
-export default function DeleteGuide({ deleteGuide }) {
+export default function DeleteGuide({ deleteGuide, history }) {
+  const handleDelete = e => {
+    deleteGuide().then(res => {
+      if (res) {
+        history.push(`/my-guides`);
+      }
+    });
+  };
+
   return (
     <Modal trigger={<Button>Delete</Button>} closeIcon>
       <Header icon="archive" content="Delete Guide" />
@@ -16,7 +24,7 @@ export default function DeleteGuide({ deleteGuide }) {
         <Button color="red">
           <Icon name="remove" /> No
         </Button>
-        <Button onClick={deleteGuide} color="green">
+        <Button onClick={handleDelete} color="green">
           <Icon name="checkmark" /> Yes
         </Button>
       </Modal.Actions>

@@ -6,32 +6,34 @@ import AddNewStep from "./AddNewStep";
 import AddIngredients from "./AddIngredients.js";
 
 const AddGuide = () => {
-
-  const [fieldValues, setFieldValues] = useState({ title: "", ingredients: [], steps: [] });
+  const [fieldValues, setFieldValues] = useState({
+    title: "",
+    ingredients: [],
+    steps: []
+  });
   const [guide, setGuide] = useState({ title: "", ingredients: [], steps: [] });
   const [ingredientsArray, setIngredients] = useState([]);
   const [stepArray, setStep] = useState([]);
 
   const handleIngredientChange = event => {
-    setIngredients([...ingredientsArray, event.target.value])
+    setIngredients([...ingredientsArray, event.target.value]);
   };
   const handleStepChange = event => {
-    setStep([...stepArray, event.target.value])
+    setStep([...stepArray, event.target.value]);
   };
 
   const handleStepSubmit = event => {
     let newArray = fieldValues.steps;
     newArray.push(stepArray[stepArray.length - 1]);
     setGuide([fieldValues.steps, ...newArray]);
-    setStep(['']);
-  }
+    setStep([""]);
+  };
   const handleIngredientSubmit = event => {
     event.preventDefault();
     let newArray = fieldValues.ingredients;
     newArray.push(ingredientsArray[ingredientsArray.length - 1]);
     setGuide([fieldValues.ingredients, ...newArray]);
-    setIngredients(['']);
-
+    setIngredients([""]);
   };
 
   const handleChange = event => {
@@ -42,7 +44,7 @@ const AddGuide = () => {
   const newHandleChange = event => {
     event.preventDefault();
     console.log(guide);
-    setGuide({ ...guide, ...fieldValues })
+    setGuide({ ...guide, ...fieldValues });
     console.log(guide);
   };
 
@@ -52,14 +54,14 @@ const AddGuide = () => {
 
     //dont ignore this one though-
     /*This is where it would send the data to the back end. all data is saved as an object in a var called guide*/
-
   };
 
   return (
     <>
       <form onSubmit={event => newHandleChange(event)}>
-
-        <label> Title:
+        <label>
+          {" "}
+          Title:
           <Input
             type="text"
             placeholder="Add Guide Title..."
@@ -78,7 +80,9 @@ const AddGuide = () => {
             onChange={event => handleIngredientChange(event)}
             value={ingredientsArray[ingredientsArray.length - 1]}
           />
-          <button onClick={event => handleIngredientSubmit(event)}>Add An Ingredient</button>
+          <button onClick={event => handleIngredientSubmit(event)}>
+            Add An Ingredient
+          </button>
         </div>
 
         <div>
@@ -98,8 +102,7 @@ const AddGuide = () => {
             <p>Save</p>
           </button>
           <p>|</p>
-          <Link to="/add-guide/delete">
-          </Link>
+          <Link to="/add-guide/delete" />
         </div>
       </form>
     </>
