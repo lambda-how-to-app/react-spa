@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-
-import { Header, Pagination } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -9,7 +8,6 @@ import { getGuides, getUsers } from "../store/actions";
 import decode from "jwt-decode";
 
 import "./MyGuides.css";
-import MyGuidePosts from "./MyGuidePosts.js";
 import Pagination from './Pagination.js';
 
 const GuideContainer = styled.div`
@@ -28,10 +26,6 @@ const LineDiv = styled.div`
   margin-bottom: 14px;
 `;
 
-const AychThree = styled.h3`
-  width: 100%;
-  text-align:center;
-`
 
 const StyledLink = styled(Link)`
   &&&{
@@ -39,10 +33,7 @@ const StyledLink = styled(Link)`
     color: black;
   }
 `
-// to edit with user's guide id
-const handleClick = () => {
-  console.log("guide clicked!");
-};
+
 
 let userId;
 if (localStorage.token) {
