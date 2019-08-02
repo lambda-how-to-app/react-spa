@@ -2,17 +2,20 @@ import React from 'react';
 import { Card, Image } from "semantic-ui-react";
 import choco from "../chocomilk.jpg";
 
-const MyGuidePosts = (props) => {
+const MyGuidePosts = ({ posts, loading }) => {
+    if(loading) {
+        return <h2>Loading...</h2>;
+    }
 
     return (
         <div>
-            {props.pages.map(pagee => (
+            {posts.map(post => (
                 <Card.Group>
                     <Image src={choco} avatar />
                     <Card>
                         <Card.Content>
-                            <Card.Header>{pagee.pageTitle}</Card.Header>
-                            <Card.Description>{pagee.pageDesc}</Card.Description>
+                            <Card.Header>{post.title}</Card.Header>
+                            <Card.Description>{post.body}</Card.Description>
                         </Card.Content>
                     </Card>
                 </Card.Group>
