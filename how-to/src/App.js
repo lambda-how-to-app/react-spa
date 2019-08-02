@@ -15,7 +15,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import AddGuide from "./components/AddGuide";
 import Guide from "./components/Guide";
 
-import SearchGuides from './components/searchGuides';
+import SearchGuides from "./components/searchGuides";
 import DeleteGuide from "./components/DeleteGuide";
 import MyGuides from "./components/MyGuides";
 import GuideForm from "./components/GuideForm";
@@ -27,9 +27,8 @@ const App = ({ user, isLoggedIn }) => {
   return (
     <div>
       <Container>
-
-        <NavBar /> 
-        <Route path = "/searchguides" component = {SearchGuides}/>
+        <NavBar />
+        <Route path="/searchguides" component={SearchGuides} />
         <Route exact path="/" render={props => <Welcome {...props} />} />
         <Route
           path="/login"
@@ -54,9 +53,6 @@ const App = ({ user, isLoggedIn }) => {
 
         <Route path="/add-guide" component={AddGuide} />
 
-        <Route path="/add-guide/delete" component={AddGuide} />
-
-        <Route path="/edit" render={props => <Form {...props} />} />
         <Route path="/guide/:id" render={props => <Guide {...props} />} />
         <PrivateRoute path="/add-guide/delete" component={DeleteGuide} />
         <PrivateRoute path="/user-dashboard" component={UserDashboard} />
@@ -65,7 +61,6 @@ const App = ({ user, isLoggedIn }) => {
         <PrivateRoute path="/creator-dashboard" component={CreatorDashboard} />
         <PrivateRoute path="/guides" component={GuideList} />
         <PrivateRoute path="/my-guides" component={MyGuides} />
-
       </Container>
     </div>
   );

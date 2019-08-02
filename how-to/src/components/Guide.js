@@ -85,7 +85,10 @@ function Guide(props) {
       {props.guide && userId === props.guide.guide_auth_id ? (
         <div>
           <DeleteGuide deleteGuide={deleteGuide} />{" "}
-          <button onClick={() => setIsEditing(!isEditing)}> Edit</button>
+          <button onClick={() => setIsEditing(!isEditing)}>
+            {" "}
+            {isEditing ? "Go Back" : "Edit"}
+          </button>
         </div>
       ) : null}
 
