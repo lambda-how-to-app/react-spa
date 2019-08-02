@@ -156,10 +156,13 @@ export const UPDATE_GUIDE_FAILURE = "UPDATE_GUIDE_FAILURE";
 
 export const editGuide = (guide, id) => dispatch => {
   dispatch({ type: UPDATE_GUIDE_START });
+  console.log("GUIDE!!!!!!!!!!!!:", guide);
   return axiosWithAuth()
     .put(`/api/v1/lifehack/${id}`, guide)
     .then(res => {
+      console.log(res);
       dispatch({ type: UPDATE_GUIDE_SUCCESS, payload: res.data.body });
+      return true;
     })
     .catch(err => {
       dispatch({ type: UPDATE_GUIDE_FAILURE });

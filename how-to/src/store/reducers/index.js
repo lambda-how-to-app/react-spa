@@ -249,6 +249,7 @@ export const reducer = (state = initialState, action) => {
     case UPDATE_GUIDE_SUCCESS:
       return {
         ...state,
+        guides: [...state.guides],
         error: "",
         isLoading: false,
         updatingGuide: false

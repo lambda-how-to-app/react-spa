@@ -4,34 +4,57 @@ import { Button, Form, Header, Input } from "semantic-ui-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { addGuide } from "../store/actions";
+import { addGuide, editGuide } from "../store/actions";
 
 const GuideForm = props => {
   console.log(props);
   const LoginSchema = Yup.object().shape({
     title: Yup.string().required("Guide title is required"),
-    image: Yup.string()
+    image: Yup.string().nullable()
   });
 
   return (
     <div className="ui center aligned container">
-      <Header as="h1">Create a Guide</Header>
+      {!props.guide ? (
+        <Header as="h1">Create a Guide</Header>
+      ) : (
+        <Header as="h1">Edit Guide</Header>
+      )}
 
       <Formik
         validationSchema={LoginSchema}
-        initialValues={{
-          title: "",
-          image: ""
-        }}
+        initialValues={
+          !props.guide
+            ? {
+                title: "",
+                banner_image: ""
+              }
+            : {
+                title: props.guide.title,
+                banner_image: props.guide.banner_image
+              }
+        }
         onSubmit={(values, actions) => {
-          props.addGuide(values).then(res => {
-            console.log(res);
-            if (res) {
-              const userType = localStorage.getItem("userType");
-              props.history.push(`/my-guides`);
-              actions.resetForm("");
-            }
-          });
+          if (!props.isEditing) {
+            props.addGuide(values).then(res => {
+              if (res) {
+                const userType = localStorage.getItem("userType");
+                props.history.push(`/my-guides`);
+                actions.resetForm("");
+              }
+            });
+          } else {
+            console.log("VAAAALLLUUUUEEEESSS", values);
+            props.editGuide(values, props.guide.id).then(res => {
+              if (res) {
+                const userType = localStorage.getItem("userType");
+                if (props.history) {
+                  props.history.push(`/my-guides`);
+                  actions.resetForm("");
+                }
+              }
+            });
+          }
         }}
         render={({
           touched,
@@ -74,9 +97,15 @@ const GuideForm = props => {
                 <p style={{ margin: "0", color: "red" }}>{errors.image}</p>
               ) : null}
 
-              <Button className="loginButton" type="submit" color="blue">
-                Next Step &rarr;
-              </Button>
+              {!props.guide ? (
+                <Button className="loginButton" type="submit" color="blue">
+                  Next Step &rarr;
+                </Button>
+              ) : (
+                <Button className="loginButton" type="submit" color="blue">
+                  Update &rarr;
+                </Button>
+              )}
 
               {props.isLoggingIn && <div>"Loading!"</div>}
             </Form>
@@ -101,5 +130,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addGuide }
+  { addGuide, editGuide }
 )(GuideForm);
