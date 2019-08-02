@@ -26,8 +26,8 @@ const App = ({ user, isLoggedIn }) => {
   const userType = localStorage.getItem("userType");
   return (
     <div>
+      <NavBar />
       <Container>
-        <NavBar />
         <Route path="/searchguides" component={SearchGuides} />
         <Route exact path="/" render={props => <Welcome {...props} />} />
         <Route
