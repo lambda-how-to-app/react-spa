@@ -6,6 +6,7 @@ const Head = styled.div`
   margin-bottom: 30px;
 `;
 
+
 const GuideTitle = props => {
   return (
     <Head>

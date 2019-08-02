@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Formik } from "formik";
 import * as Yup from "yup";
+
+
 import { Button, Form, Header, Input, Radio } from "semantic-ui-react";
 
 import { signUp } from "../store/actions";
@@ -17,6 +19,8 @@ const Signup = (props, { isSubmitting }) => {
     align-items: center;
     flex-direction: center;
   `;
+
+
 
   const LoginSchema = Yup.object().shape({
     // fullname: Yup.string().required("Name is required"),
@@ -65,6 +69,7 @@ const Signup = (props, { isSubmitting }) => {
           values,
           setFieldValue
         }) => {
+          
           return (
             <Form onSubmit={handleSubmit}>
               <Form.Group>
