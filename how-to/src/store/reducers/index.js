@@ -124,7 +124,7 @@ export const reducer = (state = initialState, action) => {
         guides: [],
         error: "",
         isLoading: true,
-        isLoggingIn: false,
+        isLoggingIn: true,
         fetchingData: false
       };
     case SIGN_UP_SUCCESS:
@@ -135,7 +135,8 @@ export const reducer = (state = initialState, action) => {
         error: "",
         isLoading: false,
         isLoggingIn: false,
-        fetchingData: false
+        fetchingData: false,
+        isLoggedIn: true
       };
     case SIGN_UP_FAILURE:
       return {

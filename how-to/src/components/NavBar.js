@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -44,9 +44,11 @@ const NavBar = props => {
         active={activeItem === "how-to"}
         content="HOW-TO"
         onClick={handleItemClick}
-      />
+      >
+        <Icon name="home" />
+      </Menu.Item>
 
-      {!props.user && !localStorage.getItem("token") ? (
+      {!props.isLoggedIn && !localStorage.getItem("token") ? (
         <>
           <Menu.Item
             as={NavLink}
